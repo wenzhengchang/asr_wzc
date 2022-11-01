@@ -26,6 +26,7 @@ from wenet.squeezeformer.encoder import SqueezeformerEncoder
 from wenet.utils.cmvn import load_cmvn
 
 
+# 初始化模型
 def init_model(configs):
     if configs['cmvn_file'] is not None:
         mean, istd = load_cmvn(configs['cmvn_file'], configs['is_json_cmvn'])

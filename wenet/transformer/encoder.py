@@ -90,14 +90,18 @@ class BaseEncoder(torch.nn.Module):
             use_dynamic_left_chunk (bool): whether use dynamic left chunk in
                 dynamic chunk training
         """
+        # 检查参数
         assert check_argument_types()
         super().__init__()
         self._output_size = output_size
 
+        # 绝对位置编码
         if pos_enc_layer_type == "abs_pos":
             pos_enc_class = PositionalEncoding
+        # 相对位置编码
         elif pos_enc_layer_type == "rel_pos":
             pos_enc_class = RelPositionalEncoding
+        # 没有位置编码
         elif pos_enc_layer_type == "no_pos":
             pos_enc_class = NoPositionalEncoding
         else:
@@ -115,6 +119,7 @@ class BaseEncoder(torch.nn.Module):
             raise ValueError("unknown input_layer: " + input_layer)
 
         self.global_cmvn = global_cmvn
+        # 初始化降采样层
         self.embed = subsampling_class(
             input_size,
             output_size,
@@ -157,11 +162,17 @@ class BaseEncoder(torch.nn.Module):
             masks: torch.Tensor batch padding mask after subsample
                 (B, 1, T' ~= T/subsample_rate)
         """
+        # 先取出mask
         T = xs.size(1)
         masks = ~make_pad_mask(xs_lens, T).unsqueeze(1)  # (B, 1, T)
+
+        # 然后走一遍全局cmvn
         if self.global_cmvn is not None:
             xs = self.global_cmvn(xs)
+
+        # 然后下采样
         xs, pos_emb, masks = self.embed(xs, masks)
+        # 然后定义好mask_pad:padding用的mask chunk_masks:动态chunk用的mask
         mask_pad = masks  # (B, 1, T/subsample_rate)
         chunk_masks = add_optional_chunk_mask(xs, masks,
                                               self.use_dynamic_chunk,
@@ -169,13 +180,18 @@ class BaseEncoder(torch.nn.Module):
                                               decoding_chunk_size,
                                               self.static_chunk_size,
                                               num_decoding_left_chunks)
+
+        # 对于每一层前向传播，然后更新动态chunk的chunk_mask
         for layer in self.encoders:
             xs, chunk_masks, _, _ = layer(xs, chunk_masks, pos_emb, mask_pad)
+
+        # 最后做一个layer normalization
         if self.normalize_before:
             xs = self.after_norm(xs)
         # Here we assume the mask is not changed in encoder layers, so just
         # return the masks before encoder layers, and the masks will be used
         # for cross attention with decoder later
+        # 这个masks在encoder layer之后不会改变，所以直接传出去 留给后面的cross attention
         return xs, masks
 
     def forward_chunk(

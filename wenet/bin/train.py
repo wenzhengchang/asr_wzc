@@ -35,6 +35,7 @@ from wenet.utils.scheduler import WarmupLR, NoamHoldAnnealing
 from wenet.utils.config import override_config
 from wenet.utils.init_model import init_model
 
+
 def get_args():
     parser = argparse.ArgumentParser(description='training your network')
     parser.add_argument('--config', required=True, help='config file')
@@ -117,7 +118,6 @@ def get_args():
                         help="List of encoder modules \
                         to initialize ,separated by a comma")
 
-
     args = parser.parse_args()
     return args
 
@@ -153,8 +153,11 @@ def main():
     cv_conf['shuffle'] = False
     non_lang_syms = read_non_lang_symbols(args.non_lang_syms)
 
+    # 训练数据集
     train_dataset = Dataset(args.data_type, args.train_data, symbol_table,
                             train_conf, args.bpe_model, non_lang_syms, True)
+
+    # 验证数据集
     cv_dataset = Dataset(args.data_type,
                          args.cv_data,
                          symbol_table,
@@ -163,11 +166,14 @@ def main():
                          non_lang_syms,
                          partition=False)
 
+    # 训练dataloader
     train_data_loader = DataLoader(train_dataset,
                                    batch_size=None,
                                    pin_memory=args.pin_memory,
                                    num_workers=args.num_workers,
                                    prefetch_factor=args.prefetch)
+
+    # 验证dataloader
     cv_data_loader = DataLoader(cv_dataset,
                                 batch_size=None,
                                 pin_memory=args.pin_memory,
@@ -181,6 +187,7 @@ def main():
     vocab_size = len(symbol_table)
 
     # Save configs to model_dir/train.yaml for inference and export
+
     configs['input_dim'] = input_dim
     configs['output_dim'] = vocab_size
     configs['cmvn_file'] = args.cmvn
@@ -192,6 +199,7 @@ def main():
             fout.write(data)
 
     # Init asr model from configs
+    # 根据读取的配置初始化model
     model = init_model(configs)
     print(model)
     num_params = sum(p.numel() for p in model.parameters())
@@ -272,7 +280,8 @@ def main():
     if args.use_amp:
         scaler = torch.cuda.amp.GradScaler()
 
-    for epoch in range(start_epoch, num_epochs):
+    # 使用执行器来训练模型，喂入dataloader数据和模型
+    for epoch in range(start_epoch, num_epochs):    # 一个epoch
         train_dataset.set_epoch(epoch)
         configs['epoch'] = epoch
         lr = optimizer.param_groups[0]['lr']

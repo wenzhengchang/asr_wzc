@@ -21,11 +21,13 @@ import torch
 from torch.nn.utils import clip_grad_norm_
 
 
+# 执行器
 class Executor:
 
     def __init__(self):
         self.step = 0
 
+    # 训练
     def train(self, model, optimizer, scheduler, data_loader, device, writer,
               args, scaler):
         ''' Train one epoch
@@ -118,6 +120,7 @@ class Executor:
                     log_str += 'lr {:.8f} rank {}'.format(lr, rank)
                     logging.debug(log_str)
 
+    # 交叉验证
     def cv(self, model, data_loader, device, args):
         ''' Cross validation on
         '''
