@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # Modified from ESPnet(https://github.com/espnet/espnet)
-
+from cgi import test
+from copy import deepcopy
+from logging import debug
+from pypinyin import pinyin
+import pypinyin
 from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
 
@@ -31,14 +35,23 @@ from wenet.utils.mask import (make_pad_mask, mask_finished_preds,
                               mask_finished_scores, subsequent_mask)
 
 
+
 class ASRModel(torch.nn.Module):
     """CTC-attention hybrid Encoder-Decoder model"""
     def __init__(
         self,
         vocab_size: int,
+        vocab_size_py: int,
         encoder: TransformerEncoder,
         decoder: TransformerDecoder,
+        encoder_before:TransformerEncoder,
+        encoder_between:TransformerEncoder,
+        char_dict :dict,
+        char_dict_pinyin :dict,
+        
         ctc: CTC,
+        ctc_py: CTC,
+        ctc1:CTC,
         ctc_weight: float = 0.5,
         ignore_id: int = IGNORE_ID,
         reverse_weight: float = 0.0,
@@ -51,27 +64,52 @@ class ASRModel(torch.nn.Module):
         # note that eos is the same as sos (equivalent ID)
         self.sos = vocab_size - 1
         self.eos = vocab_size - 1
+        self.eos_pinyin = vocab_size_py - 1
         self.vocab_size = vocab_size
+        self.vocab_size_py = vocab_size_py
         self.ignore_id = ignore_id
         self.ctc_weight = ctc_weight
         self.reverse_weight = reverse_weight
 
+        self.encoder_before = encoder_before
+        self.encoder_between = encoder_between
+        self.embed = torch.nn.Embedding(vocab_size, 256)
+        self.embed_py = torch.nn.Embedding(vocab_size_py,256)
+        self.sigmoid = torch.nn.Sigmoid()
+        self.linear1 = torch.nn.Linear(256,1)
+        self.linear2 = torch.nn.Linear(256,1)
+        
+        
         self.encoder = encoder
         self.decoder = decoder
         self.ctc = ctc
+        self.ctc_py = ctc_py
+        self.ctc1 = ctc1
         self.criterion_att = LabelSmoothingLoss(
             size=vocab_size,
             padding_idx=ignore_id,
             smoothing=lsm_weight,
             normalize_length=length_normalized_loss,
         )
-
+        
+        self.char_dict = char_dict
+        self.char_dict_pinyin = char_dict_pinyin
+        
+        # self.char_dict = char_dict
+        # self.char_dict_pinyin = char_dict_pinyin
+        
+        # self.map = torch.zeros(vocab_size,2)
+        
+        # for i in vocab_size:
+            
+        
     def forward(
         self,
         speech: torch.Tensor,
         speech_lengths: torch.Tensor,
         text: torch.Tensor,
         text_lengths: torch.Tensor,
+        pinyin:torch.Tensor
     ) -> Dict[str, Optional[torch.Tensor]]:
         """Frontend + Encoder + Decoder + Calc loss
 
@@ -86,10 +124,112 @@ class ASRModel(torch.nn.Module):
         assert (speech.shape[0] == speech_lengths.shape[0] == text.shape[0] ==
                 text_lengths.shape[0]), (speech.shape, speech_lengths.shape,
                                          text.shape, text_lengths.shape)
+                
+        # print("中文词汇数量:",self.vocab_size)
+        # print("拼音词汇数量:",self.vocab_size_py)
+        
         # 1. Encoder
-        encoder_out, encoder_mask = self.encoder(speech, speech_lengths)
-        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+        # encoder3_out, encoder3_mask = self.encoder_before(speech, speech_lengths)
+        # encoder3_out_lens = encoder3_mask.squeeze(1).sum(1)
+        
+        
+        # 1.5. Embedding
+        # batch_size = speech.shape[0]
+        # # Let's assume B = batch_size
+        # maxlen = encoder3_out.size(1)
+        # encoder3_out_lens = encoder3_mask.squeeze(1).sum(1)
+        # ctc_probs = self.ctc.log_softmax(
+        #     encoder3_out)  # (B, maxlen, vocab_size)
+        # topk_prob, topk_index = ctc_probs.topk(1, dim=2)  # (B, maxlen, 1)
+        # topk_index = topk_index.view(batch_size, maxlen)  # (B, maxlen)
+        # mask = make_pad_mask(encoder3_out_lens, maxlen)  # (B, maxlen)
+        # topk_index = topk_index.masked_fill_(mask, self.eos)  # (B, maxlen)
+        
+        # ##topk_index就是我们要的text向量
+        # text_soft = topk_index
+        # text_info = self.embed(text_soft)
+        
+        # ## 结合text_info 和acoustic feature(encoder3_out),通过sigmoid函数
 
+        # text_info_one = self.linear1(text_info)
+        # encoder3_out_one = self.linear2(encoder3_out)
+
+        # k = self.sigmoid(text_info_one + encoder3_out_one)
+        combined_infos = []
+        loss_ctcs = []
+        
+        betweens = ["between1"]
+        k = 1
+        for i in range(0,k):
+            if i == 0:
+               
+                combined_info,loss_ctci = self._combine_information(speech,speech_lengths,text,text_lengths,"before")  
+                
+                combined_infos.append(combined_info)
+                loss_ctcs.append(loss_ctci)
+            else:
+                combined_info,loss_ctci = self._combine_information(combined_infos[i-1],speech_lengths,text,text_lengths,"")  
+                combined_infos.append(combined_info)
+                loss_ctcs.append(loss_ctci)
+                   
+        # combined_info3,loss_ctc3 = self._combine_information(speech,speech_lengths,text,text_lengths)
+
+        # encoder_out,encoder_mask = self.encoder(combined_info3,speech_lengths)
+
+        # encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+        
+        # 介些来不需要global_cmvn了
+              
+         #1.5.b 进行很多ctc loss的计算
+        # combined_info6,loss_ctc6 = self._combine_information(combined_info3,speech_lengths,text,text_lengths)
+        
+        encoder_out,encoder_mask = self.encoder(combined_infos[k-1],speech_lengths)
+        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+        
+        
+        
+      
+        batch_size = speech.shape[0]
+      
+        # Let's assume B = batch_size
+        maxlen = encoder_out.size(1)
+        
+        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+       
+       
+       
+       ################
+        ctc_probs = self.ctc.log_softmax(
+            encoder_out)  # (B, maxlen, vocab_size)
+        
+        topk_prob, topk_index = ctc_probs.topk(1, dim=2)  # (B, maxlen, 1)
+        
+        topk_index = topk_index.view(batch_size, maxlen)  # (B, maxlen)
+        
+        mask = make_pad_mask(encoder_out_lens, maxlen)  # (B, maxlen)
+        
+        topk_index = topk_index.masked_fill_(mask, self.eos)  # (B, maxlen) 
+        
+        ##topk_index就是我们要的text向量
+        text_soft = topk_index
+        
+        # print(text_soft)
+        ress = ["sra","2","321","#12","3","31","@31","213","3","3","31","41","31","2","@","31"]
+        
+        for index,i in enumerate(text_soft):
+            res = ""
+            for j in i:
+                res = res + self.char_dict[int(j)] +" "
+                ress[index] = res
+                
+        # print(ress,"\n")
+        for res in ress:
+            print("中间层中文识别结果\n：",res)
+        
+        
+        ####################
+        
+        
         # 2a. Attention-decoder branch
         if self.ctc_weight != 1.0:
             loss_att, acc_att = self._calc_att_loss(encoder_out, encoder_mask,
@@ -98,11 +238,20 @@ class ASRModel(torch.nn.Module):
             loss_att = None
 
         # 2b. CTC branch
-        if self.ctc_weight != 0.0:
-            loss_ctc = self.ctc(encoder_out, encoder_out_lens, text,
+       
+        loss_ctc_origin = self.ctc(encoder_out, encoder_out_lens, text,
                                 text_lengths)
-        else:
-            loss_ctc = None
+        
+        # loss_ctc3 = self.ctc(encoder3_out, encoder3_out_lens, text,
+        #                         text_lengths)
+        
+        # loss_ctc_totol = 0
+        # for loss_ctci in loss_ctcs:
+        #     print("loss_shape:",loss_ctci.shape)
+        #     loss_ctc_totol = loss_ctc_totol + loss_ctci
+        
+        # loss_ctc_totol = loss_ctc_totol / k
+        loss_ctc =  loss_ctc_origin 
 
         if loss_ctc is None:
             loss = loss_att
@@ -111,7 +260,76 @@ class ASRModel(torch.nn.Module):
         else:
             loss = self.ctc_weight * loss_ctc + (1 -
                                                  self.ctc_weight) * loss_att
-        return {"loss": loss, "loss_att": loss_att, "loss_ctc": loss_ctc}
+            
+        dict = {"loss": loss, "loss_att": loss_att, "loss_ctc": loss_ctc,"loss_ctc_origin":loss_ctc_origin}
+        for i,loss_ctci in enumerate(loss_ctcs):
+            dict["loss_ctc{}".format(i)] = loss_ctci
+        return dict
+
+
+    def _combine_information(
+        self,
+        speech: torch.Tensor,
+        speech_lengths: torch.Tensor,
+        text: torch.Tensor,
+        text_lengths: torch.Tensor,
+        status: str
+    ) ->Tuple[torch.Tensor, torch.Tensor]:
+        if(status == "before"):
+            encoder_out, encoder_mask = self.encoder_before(speech, speech_lengths)
+        else:
+            encoder_out, encoder_mask = self.encoder_between(speech, speech_lengths)
+        
+        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+      
+        batch_size = speech.shape[0]
+      
+        # Let's assume B = batch_size
+        maxlen = encoder_out.size(1)
+        
+        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+       
+        ctc_probs = self.ctc1.log_softmax(
+            encoder_out)  # (B, maxlen, vocab_size)
+        
+        topk_prob, topk_index = ctc_probs.topk(1, dim=2)  # (B, maxlen, 1)
+        
+        topk_index = topk_index.view(batch_size, maxlen)  # (B, maxlen)
+        
+        mask = make_pad_mask(encoder_out_lens, maxlen)  # (B, maxlen)
+        
+        topk_index = topk_index.masked_fill_(mask, self.eos)  # (B, maxlen) 
+        
+        ##topk_index就是我们要的text向量
+        text_soft = topk_index
+        
+        # print(text_soft)
+        ress = ["sra","2","321","#12","3","31","@31","213","3","3","31","41","31","2","@","31"]
+        
+        for index,i in enumerate(text_soft):
+            res = ""
+            for j in i:
+                res = res + self.char_dict[int(j)] +" "
+                ress[index] = res
+                
+        # print(ress,"\n")
+        for res in ress:
+            print("中间层中文识别结果\n：",res)
+        
+        text_info = self.embed(text_soft)
+        ## 结合text_info 和acoustic feature(encoder3_out),通过sigmoid函数
+        text_info_one = self.linear1(text_info)
+      
+        encoder_out_one = self.linear2(encoder_out)
+        
+        k = self.sigmoid(text_info_one + encoder_out_one)
+        
+        combined_info = k * text_info + (1-k) * encoder_out_one
+        
+        loss_ctc = self.ctc1(encoder_out, encoder_out_lens, text,
+                                text_lengths)
+        return combined_info,loss_ctc
+
 
     def _calc_att_loss(
         self,
@@ -146,6 +364,11 @@ class ASRModel(torch.nn.Module):
             ignore_label=self.ignore_id,
         )
         return loss_att, acc_att
+    
+    
+    
+        
+        
 
     def _forward_encoder(
         self,
@@ -537,6 +760,13 @@ class ASRModel(torch.nn.Module):
                 best_score = score
                 best_index = i
         return hyps[best_index][0], best_score
+    
+    
+    
+    
+        
+        
+        
 
     @torch.jit.export
     def subsampling_rate(self) -> int:

@@ -5,7 +5,8 @@
 
 # Use this to control how many gpu you use, It's 1-gpu training if you specify
 # just 1gpu, otherwise it's is multiple gpu training based on DDP in pytorch
-export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
+export CUDA_VISIBLE_DEVICES="7"
+dir=exp/card7_try_py_out
 # The NCCL_SOCKET_IFNAME variable specifies which IP interface to use for nccl
 # communication. More details can be found in
 # https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html
@@ -24,11 +25,12 @@ num_nodes=1
 node_rank=0
 # The aishell dataset location, please change this to your own path
 # make sure of using absolute path. DO-NOT-USE relatvie path!
-data=/export/data/asr-data/OpenSLR/33/
+data=/home/wenzhengchang/asr_data
 data_url=www.openslr.org/resources/33
 
 nj=16
 dict=data/dict/lang_char.txt
+dict_py=data/dict/lang_char_pinyin.txt
 
 # data_type can be `raw` or `shard`. Typically, raw is used for small dataset,
 # `shard` is used for large dataset which is over 1k hours, and `shard` is
@@ -46,7 +48,7 @@ train_set=train
 # 6. conf/train_u2++_transformer.yaml: U2++ transformer
 train_config=conf/train_conformer.yaml
 cmvn=true
-dir=exp/conformer
+
 checkpoint=
 
 # use average_checkpoint will get better result
@@ -98,7 +100,7 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
 fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
-  echo "Prepare data, prepare required format"
+  echo "Prepare data, prepare requried format"
   for x in dev test ${train_set}; do
     if [ $data_type == "shard" ]; then
       tools/make_shard_list.py --num_utts_per_shard $num_utts_per_shard \
@@ -140,6 +142,7 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
       --config $train_config \
       --data_type $data_type \
       --symbol_table $dict \
+      --symbol_table_py $dict_py \
       --train_data data/$train_set/data.list \
       --cv_data data/dev/data.list \
       ${checkpoint:+--checkpoint $checkpoint} \
@@ -233,9 +236,8 @@ if [ ${stage} -le 7 ] && [ ${stop_stage} -ge 7 ]; then
     --blank_skip_thresh 0.98 --ctc_weight 0.5 --rescoring_weight 1.0 \
     --chunk_size $chunk_size \
     --fst_path data/lang_test/TLG.fst \
-    --dict_path data/lang_test/words.txt \
     data/test/wav.scp data/test/text $dir/final.zip \
-    data/lang_test/units.txt $dir/lm_with_runtime
+    data/lang_test/words.txt $dir/lm_with_runtime
   # Please see $dir/lm_with_runtime for wer
 fi
 

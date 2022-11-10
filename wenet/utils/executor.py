@@ -19,12 +19,34 @@ from contextlib import nullcontext
 # from contextlib import suppress as nullcontext
 import torch
 from torch.nn.utils import clip_grad_norm_
+from pypinyin import pinyin
 
 
 class Executor:
 
     def __init__(self):
+        dict_path = '/home/wenzhengchang/wenet_wzc/examples/aishell/s0/data/dict/lang_char.txt'
+        # Load dict
+        char_dict = {}
+        with open(dict_path, 'r', encoding="utf-8") as fin:
+            for line in fin:
+                arr = line.strip().split()
+                assert len(arr) == 2
+                char_dict[int(arr[1])] = arr[0]
+       
+        
+        dict_pinyin_path = '/home/wenzhengchang/wenet_wzc/examples/aishell/s0/data/dict/lang_char_pinyin.txt'
+        # Load dict_pinyin
+        char_dict_pinyin = {}
+        with open(dict_pinyin_path, 'r', encoding="utf-8") as fin:
+            for line in fin:
+                arr = line.strip().split()
+                assert len(arr) == 2
+                char_dict_pinyin[arr[0]] = int(arr[1])
         self.step = 0
+        self.char_dict = char_dict
+        self.char_dict_pinyin = char_dict_pinyin
+
 
     def train(self, model, optimizer, scheduler, data_loader, device, writer,
               args, scaler):
@@ -70,13 +92,30 @@ class Executor:
                 # processes.
                 else:
                     context = nullcontext
+                    
+                    
+                pinyins = target.clone()
+                for i in pinyins:
+                    for j in i:
+                        if(j == -1):
+                            continue
+                        eos = len(self.char_dict) - 1
+                        # print("eos:",eos)
+                        if j == eos:
+                            j = len(self.char_dict_pinyin)-1
+                        else:
+                            py = pinyin(self.char_dict[int(j)])
+                            j = py[0][0]
+                        
+            
                 with context():
                     # autocast context
                     # The more details about amp can be found in
                     # https://pytorch.org/docs/stable/notes/amp_examples.html
                     with torch.cuda.amp.autocast(scaler is not None):
+                        
                         loss_dict = model(feats, feats_lengths, target,
-                                          target_lengths)
+                                          target_lengths,pinyins)
                         loss = loss_dict['loss'] / accum_grad
                     if use_amp:
                         scaler.scale(loss).backward()
@@ -136,9 +175,23 @@ class Executor:
                 feats_lengths = feats_lengths.to(device)
                 target_lengths = target_lengths.to(device)
                 num_utts = target_lengths.size(0)
+            
+                pinyins = target.clone()
+                for i in pinyins:
+                    for j in i:
+                        if(j == -1):
+                            continue
+                        eos = len(self.char_dict) - 1
+                        # print("eos:",eos)
+                        if j == eos:
+                            j = len(self.char_dict_pinyin)-1
+                        else:
+                            py = pinyin(self.char_dict[int(j)])
+                            j = py[0][0]
+                            
                 if num_utts == 0:
                     continue
-                loss_dict = model(feats, feats_lengths, target, target_lengths)
+                loss_dict = model(feats, feats_lengths, target, target_lengths,pinyins)
                 loss = loss_dict['loss']
                 if torch.isfinite(loss):
                     num_seen_utts += num_utts

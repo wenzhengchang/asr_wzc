@@ -45,7 +45,7 @@ class BaseEncoder(torch.nn.Module):
         output_size: int = 256,
         attention_heads: int = 4,
         linear_units: int = 2048,
-        num_blocks: int = 6,
+        num_blocks: int = 3,
         dropout_rate: float = 0.1,
         positional_dropout_rate: float = 0.1,
         attention_dropout_rate: float = 0.0,

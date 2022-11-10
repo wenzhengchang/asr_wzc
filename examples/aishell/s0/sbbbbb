@@ -1,0 +1,8514 @@
+nohup: ignoring input
+run.sh: init method is file:///home/wenzhengchang/wenet_wzc/examples/aishell/s0/exp/card7_conformer_embedding_out3_pinyin_0.3_out/ddp_init
+total gpus is: 1
+ASRModel(
+  (encoder_before): ConformerEncoder(
+    (global_cmvn): GlobalCMVN()
+    (embed): Conv2dSubsampling4(
+      (conv): Sequential(
+        (0): Conv2d(1, 256, kernel_size=(3, 3), stride=(2, 2))
+        (1): ReLU()
+        (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2))
+        (3): ReLU()
+      )
+      (out): Sequential(
+        (0): Linear(in_features=4864, out_features=256, bias=True)
+      )
+      (pos_enc): RelPositionalEncoding(
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (after_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (encoders): ModuleList(
+      (0): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (1): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (2): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+    )
+  )
+  (encoder_between): ConformerEncoder(
+    (embed): Conv2dSubsampling4(
+      (conv): Sequential(
+        (0): Conv2d(1, 256, kernel_size=(3, 3), stride=(2, 2))
+        (1): ReLU()
+        (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2))
+        (3): ReLU()
+      )
+      (out): Sequential(
+        (0): Linear(in_features=16128, out_features=256, bias=True)
+      )
+      (pos_enc): RelPositionalEncoding(
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (after_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (encoders): ModuleList()
+  )
+  (embed): Embedding(4081, 256)
+  (embed_py): Embedding(1132, 256)
+  (sigmoid): Sigmoid()
+  (linear1): Linear(in_features=256, out_features=1, bias=True)
+  (linear2): Linear(in_features=256, out_features=1, bias=True)
+  (encoder): ConformerEncoder(
+    (embed): Conv2dSubsampling4(
+      (conv): Sequential(
+        (0): Conv2d(1, 256, kernel_size=(3, 3), stride=(2, 2))
+        (1): ReLU()
+        (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2))
+        (3): ReLU()
+      )
+      (out): Sequential(
+        (0): Linear(in_features=16128, out_features=256, bias=True)
+      )
+      (pos_enc): RelPositionalEncoding(
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (after_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (encoders): ModuleList(
+      (0): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (1): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (2): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (3): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (4): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (5): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (6): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (7): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+      (8): ConformerEncoderLayer(
+        (self_attn): RelPositionMultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear_pos): Linear(in_features=256, out_features=256, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (feed_forward_macaron): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): SiLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (conv_module): ConvolutionModule(
+          (pointwise_conv1): Conv1d(256, 512, kernel_size=(1,), stride=(1,))
+          (depthwise_conv): Conv1d(256, 256, kernel_size=(15,), stride=(1,), padding=(7,), groups=256)
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (pointwise_conv2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          (activation): SiLU()
+        )
+        (norm_ff): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_mha): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_ff_macaron): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_conv): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear): Identity()
+      )
+    )
+  )
+  (decoder): TransformerDecoder(
+    (embed): Sequential(
+      (0): Embedding(4081, 256)
+      (1): PositionalEncoding(
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (after_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (output_layer): Linear(in_features=256, out_features=4081, bias=True)
+    (decoders): ModuleList(
+      (0): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+      (1): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+      (2): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+      (3): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+      (4): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+      (5): DecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (src_attn): MultiHeadedAttention(
+          (linear_q): Linear(in_features=256, out_features=256, bias=True)
+          (linear_k): Linear(in_features=256, out_features=256, bias=True)
+          (linear_v): Linear(in_features=256, out_features=256, bias=True)
+          (linear_out): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (activation): ReLU()
+          (dropout): Dropout(p=0.1, inplace=False)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+        )
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (concat_linear1): Identity()
+        (concat_linear2): Identity()
+      )
+    )
+  )
+  (ctc): CTC(
+    (ctc_lo): Linear(in_features=256, out_features=4081, bias=True)
+    (ctc_loss): CTCLoss()
+  )
+  (ctc_py): CTC(
+    (ctc_lo): Linear(in_features=256, out_features=1132, bias=True)
+    (ctc_loss): CTCLoss()
+  )
+  (criterion_att): LabelSmoothingLoss(
+    (criterion): KLDivLoss()
+  )
+)2022-08-22 07:08:40,171 INFO Checkpoint: save to checkpoint exp/card7_conformer_embedding_out3_pinyin_0.3_out/init.pt
+2022-08-22 07:08:41,197 INFO Epoch 0 TRAIN info lr 8e-08
+2022-08-22 07:08:41,203 INFO using accumulate grad, new batch size is 4 times larger than before
+
+the number of model params: 57150544
+/home/wenzhengchang/anaconda3/envs/speech/lib/python3.7/site-packages/torch/optim/lr_scheduler.py:136: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+2022-08-22 07:09:09,945 DEBUG TRAIN Batch 0/0 loss 101.712906 loss_att 67.926216 loss_ctc 180.548492 loss_ctc_origin 108.142143 loss_ctc0 349.496643 lr 0.00000008 rank 0
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  980,  675,  532,  680,  583,  583,  863,  623,  647,  229,  647,
+          863,  863,  583,  863,  647,  647,  647,  647,  590,  863,  863,  645,
+         1119,  371,  390,  647,  645,  229,  614,  863,  633,  405,  849, 1002,
+          645,  132,  531,  645,  647, 1058,  647,  980,  647,  647,  647,  647,
+          865,  614,  614,  229,  647, 1101,  647,  614,  647,   36,  647,  224,
+          684,  405],
+        [ 645,  675,  344,  447,  645, 1125,  356, 1115, 1115,   65,  405,  114,
+          868,  586,  535,  586,  282,  220,  282,  535,  282,  282,  108,  132,
+          535,  132,  282,  132,  132,  132,  132,  132,  132, 1102,  868,  132,
+          132,  535,  719,  358,  822,  132,  896,  539,  594,  114,  980,   65,
+           10,   65,  594,  790,   65,   65,   65,   36,   65,  515,  114,  868,
+          868,  405],
+        [  65,   65,   65,  151, 1058,  356,  509,  405,  471,  822,  325,  980,
+          535,  535,  535,  848,  447,  132,  132,  325,  132,   65,  447,  132,
+          447,  935,  360,  961,  270,  132,  227,  961,  275,  447,  132,  132,
+           10,  132,  132,   10,  911,  961,  163,    2,  151,  215,  964,    2,
+          594,  980, 1039,  676,  594,  443,  170,   36,   65,   65,  471,  684,
+          447,  594],
+        [ 114,   65,  151,  849, 1099,  684,  229, 1109,  611,  405,  961,  229,
+          103, 1121,  849,   65,   65, 1056,  594,  859,   65,   65,   65,   65,
+           65,   65,   65,   65,  151,  868,  744,  267, 1102, 1091,  623,  132,
+          586,  586, 1102,   69, 1102,  680,  586,   65,  680,  863,  103, 1120,
+          849,   33,   69,  684,   65,   65,  586,   65,  282,  586,   36,   65,
+          611, 1131],
+        [ 114,  675,  151,  680,   65,   65,   65,   65,   65,  594,   65,   61,
+           65,   65,  151,   65, 1101,  591,  591,  151,  591,  591,  151,  849,
+          223,  680,  151,  680,  781,  739,  267,  724,  697,   65,   65,  242,
+           65,   65,   65,   65,  151,   65,  865,   36,  591,  781,  849,  151,
+           65,   65,  865,   65,  586,  114,   65,  151,  739,  718,  868, 1131,
+         1131, 1131],
+        [1039,  213,  213,  151, 1039,  151,    2, 1039,  213,  803,  213,  791,
+          309,  309,  213,  253,  325,  535,  151,  686,  729,  213, 1039,  253,
+          447,   65,   65,  219,  103,  224,  614,  803,  980,  675,  103,  859,
+           65, 1017,  100,  980,   65,   80,  151,   10,  171,  151, 1039,  278,
+          890,   81,  213,  151,  213,  213,  878,  493,  493,  213,   22, 1131,
+         1131, 1131],
+        [ 539,   65,   65,   65,   65,   65,  114,  132,  697,   16,  980,  803,
+          803,  136,  220,   39,  886,  868,  447,  686,  447,  132, 1042,  611,
+          535,  614, 1002,  697,  360,  697,  230,   39, 1018,  867,  132,  132,
+          493,  790,  790,  390,  390,  390,  229,   90,  229,  790,  781,  645,
+          376,   65,  611,   65,  114, 1072,   65,  583,  405,  611, 1131, 1131,
+         1131, 1131],
+        [ 896,   10,  896,  680,  355,  781,   33,  333,  719,   33,  684,  719,
+          896,  982,  896,  791,  781,  961,  132,  896,   33,  333,  535,  982,
+          896,  896, 1120,  896,  781, 1120,  535,  333,  613,   16,   33,  770,
+          683,  680,   65,   33,   65,  228,   39,   16,  325,   65,   65,   80,
+          718,   65,   65,   65,  684,   65, 1109,    2,  718,  151, 1131, 1131,
+         1131, 1131],
+        [ 611,  151,  680,  151,  151,  151,  684,   65,  680,  291,  912, 1072,
+          180,  355,  282,  103,  151,  853,  132,  151,  982,  853,  680,  441,
+          937,  441,  853, 1109,  791,  441,  229,  803,  535,   65,  863,  114,
+           65,  594,  554,  493,  539,  781,  781,  803,  441,   65,   65,  849,
+           65,   65,  791,   65,  103,  896,   36,  868,  103, 1131, 1131, 1131,
+         1131, 1131],
+        [ 441,   65,  693,  693,  114,  980,  684,   39,  989,  989,   20,  546,
+          132,  718,  989,  333,   36,  859,  228,   36,  532,  614,  723,  546,
+          723,  896,  358,   36,  546,  896, 1058,  718,  441,  358,  358,  647,
+          647,   10,   10, 1058,  228,  989,   20,  684,  114,  693,  441,  532,
+          718,   42,  896, 1058,   95, 1058,  718,  718, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 693,  980,   65,  151,   65,  151,  325,  532,   39,  229,  630,  532,
+          532,  441,  614,  441,  532,   41, 1060,  532,  729,  220,  441,  441,
+           39,  229,  590,    4,  441,  630,  441,  441,  718,    0,    4,   41,
+          381,  151,   39,   39,  937,  441,  441,  441,  471,  441, 1058,  647,
+         1058,  675,  376,  693,   33,  980,  611,  684, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [1039,  803,  151,  697,  535,  592,  535,  535,  535,  230,  151,  531,
+          675,  693, 1058,  213,  333,  539,  471,  230,  535,  164, 1115,  804,
+          512,  325, 1039,   10,  535,  975,   10,  719,  803,  325,  535,  325,
+          376,   35,  535,  697,  535,  594,   10,  118,  990,  790,  376,  151,
+          586,  325,   65,  998,  229,   36,  611, 1058, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 645,  697,  114, 1039,  114,  902,  697,  114, 1039,  697,  731,  270,
+          613,  613,  548,  259, 1018,  229,  229,   57,  103,   57,  229,  647,
+          259,  126,  259,  229,  259,  259,  586,  697,  697,   65,  697,    2,
+          447,  731, 1058,  455,  229,  645,  471,  114,   39,  697,   65,   65,
+          697,   65,  739,  781,  645,  697,  114, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 151,  151,  151,  350,  535,   65,  151,   36,   36, 1072,  535,  535,
+          535,  535,  535,  535,  647,  535,  859,  535,  132,  535,  325,  151,
+           70,  151,  666,   36,  535,  535,  535,  535,  535,  535,  535,  535,
+          535,  535,  535,  535,  535,   36,   36,   36,  535,  535,  535,   36,
+          535, 1072,  865,  381,  405,  611, 1131, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 803,  980,  980,  376,  980,  980,  151,  151,  376,  980,   95,  848,
+          718,  322,  212,  980,  848,   10,  498,   41,  990,  376,  358,  118,
+          275,  532,   41,  848,  597,  848,  275,  275,   41,  471,  275,  848,
+           41,  376,  471,  471,   95,  980,  980,  848,  376,  229,  586,  611,
+          848,   65,  493,    2,  645,  859, 1131, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 980,  594,  680,  980,  355,  848, 1102,  333,  781,  863,  583,  325,
+           69,   80,  578,  151,  390,  132,  220, 1102,  220,  380,  775,  535,
+          535,  485,  219,  535, 1102,  535,   10,  242,  586,   65,    2,  964,
+           10,  781,   65, 1050,   65,  980,  471,  535,  834,  834, 1131, 1131,
+         1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  10,  781,  151,  ...,  684,  868,  868],
+        [ 790,  675,  151,  ..., 1119,  859,  152],
+        [ 675,  114,  980,  ...,  493,  865,  865],
+        ...,
+        [ 114, 1116,   65,  ...,  856, 1131, 1131],
+        [ 539,  980,  868,  ...,  103, 1131, 1131],
+        [ 781, 1099,  242,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 594,  151,  594,  ...,  684,  868,  405],
+        [ 114,  594,  594,  ..., 1117,  539,  405],
+        [ 594,  594,  980,  ...,  535,  868,  675],
+        ...,
+        [ 152, 1119, 1060,  ...,  611, 1131, 1131],
+        [  65,  447,   65,  ...,  611, 1131, 1131],
+        [ 447,  292,  961,  ...,  405, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 312,  151,  980,  ...,   36,  532,   36],
+        [ 902, 1099,  151,  ...,  611,  865,  611],
+        [  65,  937,  868,  ...,  859, 1060,  535],
+        ...,
+        [ 697,  539,  896,  ...,  718,  718, 1131],
+        [ 539,  980,  151,  ...,  645, 1131, 1131],
+        [  36,  455,  782,  ..., 1058, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 964,  594,  410,  ...,  684,  809,  868],
+        [ 693,  611,  114,  ...,   36,  868,  865],
+        [ 447,  151,  471,  ...,  697,  809,  515],
+        ...,
+        [ 645,  790,  379,  ...,  865,  868, 1131],
+        [ 151,  151,  151,  ...,  865, 1131, 1131],
+        [ 114,   65,  611,  ...,  719, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,   65,  ...,  865,  865,  865],
+        [ 675,  675,   65,  ...,  531,  937,  739],
+        [ 213,  675,  980,  ...,  630,  727,  630],
+        ...,
+        [ 675,  213,  114,  ...,   44,   14,  611],
+        [ 594,  151,  151,  ...,  535,  471,  535],
+        [  90,  980,  675,  ...,  868,  645, 1093]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[1039,  151,  980,  ...,  493,  998,  967],
+        [ 775,  471,  471,  ...,  291,  227,  291],
+        [ 739,  151,   65,  ...,  647,  405,  611],
+        ...,
+        [ 693,  980,  980,  ...,  791,   36,    2],
+        [  65,  675,   65,  ...,  583,  420,  684],
+        [1058,  447,  693,  ...,   11,  718, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 448,  114,  967,  ...,  998,  223,  865],
+        [  10,  213,  739,  ...,  781,  859,  675],
+        [  36,  594,  896,  ...,   36,   95,   39],
+        ...,
+        [  10,   65,  594,  ...,  405,  834, 1131],
+        [ 114,  447,  447,  ...,  868, 1058, 1131],
+        [  10,  213, 1060,  ...,  868,  606, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,  447,  611,  ...,  611,  865,  405],
+        [ 645,  217,  217,  ...,  114,  865,  114],
+        [ 114,  409,  592,  ...,   36,  114,  645],
+        ...,
+        [ 151,  151,  937,  ...,  994,  865,   65],
+        [1058,  448,  472,  ...,  338,  868,  645],
+        [1002,  675,  151,  ...,   36,   11,  853]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[693, 791, 781,  ..., 896, 718, 718],
+        [645,  65, 980,  ..., 739, 224, 291],
+        [964, 964, 471,  ..., 471, 675, 493],
+        ...,
+        [980, 645, 344,  ..., 228, 868, 865],
+        [ 65,  65, 645,  ..., 291, 645, 242],
+        [675,  65,  65,  ..., 718, 896, 675]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  980,  790,  ...,  223,  868,  868],
+        [ 455,  675,   70,  ...,  868,  684,  865],
+        [ 645,  586,  803,  ...,  739,  739,  238],
+        ...,
+        [ 489,  376,   65,  ...,  718,  718, 1131],
+        [ 151,  151,  151,  ...,  493,  611, 1131],
+        [ 594,   65,  151,  ...,  493, 1018, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 419,  114,  114,  ...,  611,  405,  611],
+        [ 980,  902, 1060,  ..., 1058,  181,  684],
+        [ 868,  151,  151,  ...,  515, 1117,  868],
+        ...,
+        [ 447,  151,  151,  ...,  865,  611,  420],
+        [  44,  887,  594,  ...,  405,  405, 1131],
+        [ 228,  684,   65,  ...,  718,  684, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 868,  455,  594,  ...,  781,  515,  405],
+        [ 531,  213,   65,  ...,  739,  865,  865],
+        [ 114,  114,   65,  ...,  554,   39,  114],
+        ...,
+        [ 675,  680,  980,  ...,  441, 1018, 1131],
+        [ 980,  980,   65,  ...,  865,   36, 1131],
+        [ 980,  684,  594,  ...,  611,  645, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  114,  151,  ...,  594,  868,  594],
+        [ 645,  282,  645,  ...,  645,  645,   44],
+        [ 611,  151,  447,  ...,  405,   44,  611],
+        ...,
+        [ 447,  447,  961,  ...,  684, 1131, 1131],
+        [ 860,  790,  151,  ...,  684, 1131, 1131],
+        [ 151, 1119,   65,  ...,  151, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 611, 1039, 1058,  ...,  325,  493,  865],
+        [ 611,  151,  980,  ...,  739,  645,  739],
+        [ 645,  405,  114,  ...,  865,  731,  865],
+        ...,
+        [ 697,  697,  539,  ...,   36,  697,  611],
+        [1102,  151,  151,  ...,  611,  152,  718],
+        [ 257,  980,  114,  ...,  645,  611,  645]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 684,  684,  684,  ...,  684,  865,  611],
+        [  10,   65,  151,  ...,  868,  594,  151],
+        [  10, 1060,  213,  ...,  684,  405,  405],
+        ...,
+        [  65,  151,  151,  ...,  611,  718, 1131],
+        [ 213,  213,  114,  ...,  611, 1131, 1131],
+        [ 441, 1058, 1058,  ...,  684, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  868,   65,  ...,  868,  868,  611],
+        [ 675,  151,  151,  ...,  152,  868,  675],
+        [ 151,  151,  151,  ..., 1115,  558,  859],
+        ...,
+        [ 790,  790,  865,  ...,   36,  868,  675],
+        [ 645,  103,  257,  ...,  532,  675, 1131],
+        [ 868,  684,  645,  ...,  684,  684, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65, 1119,  693,  ...,  675,  611,  611],
+        [ 448,  594,  594,  ...,  291,  594,  114],
+        [  65,  400,  114,  ...,  645,  868,  152],
+        ...,
+        [  65,  684,  334,  ...,  151, 1131, 1131],
+        [ 151,  151,   65,  ...,  532, 1131, 1131],
+        [  65,  447,  151,  ...,  868, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 152,  980,   65,  ...,  865,  865,  865],
+        [ 447,   44,  151,  ...,  405,  420,  611],
+        [1099, 1109,  160,  ..., 1109,  781,  781],
+        ...,
+        [ 902,  980,   65,  ...,  868,  611, 1131],
+        [ 103,  350,  980,  ...,  868, 1050, 1131],
+        [ 151,  151,   65,  ...,  865,  868, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,  447,  151,  ...,  790, 1060,  405],
+        [ 868,  803,   65,  ...,   36,  535,  868],
+        [ 114,  344,  896,  ...,  114,  606,  684],
+        ...,
+        [ 622,  270,  441,  ...,  868,  868, 1131],
+        [ 980,  151,  151,  ...,  611,  645, 1131],
+        [ 803,  964,  594,  ...,  865, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  44,  645,  645,  ...,  645,  645,  645],
+        [ 675,  675,  213,  ...,  718, 1060,  718],
+        [  65,  213,  471,  ...,  868,  868,  405],
+        ...,
+        [  10,  151,  151,  ...,  912,  558, 1131],
+        [ 447,  961,  213,  ...,  859,  611, 1131],
+        [ 686,  699,  635,  ...,  242, 1058, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,  532,  400,  ...,  611,  405,  405],
+        [ 431,  151,   65,  ...,   41,   41,   41],
+        [ 675, 1116,  325,  ...,   36, 1058, 1058],
+        ...,
+        [ 614,  447,  151,  ..., 1060,  611, 1131],
+        [ 531,  151,   65,  ...,  675,  645, 1131],
+        [ 966,  675,  448,  ...,   65,  675, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 410,   44,  151,  ...,  291,  471,   95],
+        [  10,  902,  902,  ...,  684,  242,   10],
+        [ 448,  213,  114,  ...,  493,  645,  229],
+        ...,
+        [ 539,  980,   65,  ...,  684, 1131, 1131],
+        [ 980,  471,  447,  ...,  447, 1131, 1131],
+        [ 980,   14,  680,  ...,  611, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 114,  611,   65,  ...,  291,   11,  493],
+        [ 114,   65,  114,  ...,  535,  611,  611],
+        [  65,  213,   65,  ..., 1117,  675,  718],
+        ...,
+        [  65,  856,   65,  ..., 1131, 1131, 1131],
+        [ 611,  611,  583,  ..., 1131, 1131, 1131],
+        [ 790,  151,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 599,  151,  151,  ...,   36,   36,   36],
+        [ 343,  675,   65,  ...,  114,  114,  114],
+        [ 611,   65,  151,  ...,  611,  611,  611],
+        ...,
+        [ 675,  697,  114,  ..., 1131, 1131, 1131],
+        [ 675,   65,   65,  ..., 1131, 1131, 1131],
+        [ 803,  114,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65, 1039,   65,  ...,  739,  859,  229],
+        [ 409,  213,  980,  ...,  405,  535,   36],
+        [ 447,  447,  114,  ...,   77, 1060,   36],
+        ...,
+        [ 675,  675,  680,  ...,  868,  594, 1131],
+        [  36,  405,  594,  ...,  834, 1131, 1131],
+        [ 409,  151,   65,  ...,  181, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 645,  114,  902,  ...,  114,  865,  645],
+        [1119,  675,  675,  ...,  152,  865,  645],
+        [  65,  775,  151,  ...,  291,  675,  675],
+        ...,
+        [1021,  257,   65,  ..., 1131, 1131, 1131],
+        [ 151,  405,  151,  ..., 1131, 1131, 1131],
+        [  65,   65,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 611,  583,  980,  ...,  865,  865, 1093],
+        [ 675,  675,  680,  ...,  865,  645,  804],
+        [ 151,  151,  790,  ..., 1131, 1131, 1131],
+        ...,
+        [ 980,  611,  151,  ..., 1131, 1131, 1131],
+        [ 611,  151,   10,  ..., 1131, 1131, 1131],
+        [ 151,  151,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,   65,  ...,  645,  645,  151],
+        [ 868,  964,  675,  ...,  868,  645,  868],
+        [  10,  911,  816,  ...,  856,  739,  645],
+        ...,
+        [ 816,   44,  614,  ..., 1131, 1131, 1131],
+        [ 151,  151,  151,  ..., 1131, 1131, 1131],
+        [ 865,   70,  675,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,  441,  ...,  896,  718,  896],
+        [ 151,  151,  151,  ...,  718, 1131, 1131],
+        [ 151,  151,  680,  ..., 1131, 1131, 1131],
+        ...,
+        [ 151,  594,  151,  ..., 1131, 1131, 1131],
+        [ 114,  803,   65,  ..., 1131, 1131, 1131],
+        [ 675,  594,  594,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  10,  151,   65,  ...,  633,  611,  868],
+        [ 114,  405,  151,  ..., 1131, 1131, 1131],
+        [ 599,  590,  660,  ..., 1131, 1131, 1131],
+        ...,
+        [ 951,  228,  228,  ..., 1131, 1131, 1131],
+        [ 213,  980,   65,  ..., 1131, 1131, 1131],
+        [ 680,  151,  980,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,  447,   65,  ...,  356,  776,  532],
+        [ 645,  229,  151,  ..., 1131, 1131, 1131],
+        [ 229,  863,  675,  ..., 1131, 1131, 1131],
+        ...,
+        [ 151,  680,  680,  ..., 1131, 1131, 1131],
+        [ 734,  447,  203,  ..., 1131, 1131, 1131],
+        [ 868,   65,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151, 1119, 1058,  ...,  675,  868,  405],
+        [ 790,  980,  594,  ...,   36, 1072, 1072],
+        [  10,  471,  151,  ...,  961,  611,  611],
+        ...,
+        [ 675,  151,  675,  ..., 1131, 1131, 1131],
+        [ 447,  151,  447,  ..., 1131, 1131, 1131],
+        [ 611,  151,  611,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 152,  697,  331,  ...,   36,  865,   36],
+        [  65,   65,  213,  ...,  645,  611,  611],
+        [ 228,  980,  228,  ..., 1058,  718,   33],
+        ...,
+        [ 980,  213,   65,  ...,  718,  718, 1131],
+        [ 980,  980,   44,  ...,  338,  114, 1131],
+        [1056, 1116,  980,  ...,  865,  865, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 902,  447,  586,  ...,  675,  675,  675],
+        [  65,  151,   10,  ...,  645,  868,  532],
+        [ 103,  611,  151,  ...,   36,  594,   36],
+        ...,
+        [ 645,  535,  151,  ...,  718, 1131, 1131],
+        [ 803,  114,   65,  ...,  611, 1131, 1131],
+        [ 431,  151,  868,  ...,  611, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  69,  791,  684,  ...,  684, 1058,  611],
+        [ 291,   65,  680,  ...,  291,   10,  405],
+        [ 594,  151,  594,  ..., 1125,   36,  103],
+        ...,
+        [ 614,   65,  441,  ...,  151,  223, 1131],
+        [ 447,  447,  151,  ...,  675, 1131, 1131],
+        [ 675,  693,  680,  ..., 1058, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  151,  151,  ...,  152,  441,  611],
+        [ 471,  645,  471,  ...,  647,  471,  611],
+        [ 114,   65,  242,  ...,  242,  697,  291],
+        ...,
+        [ 594,  868,  228,  ...,   36,  684, 1131],
+        [  65,  151,  675,  ...,   36, 1131, 1131],
+        [  65,  614,  447,  ..., 1058, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  447,  ...,  441,  493,  282],
+        [ 803,  645,  645,  ...,  675,  868,  554],
+        [ 803,  151,  151,  ...,  405,  594,  868],
+        ...,
+        [ 592,  132,  447,  ...,  114,  152,  100],
+        [ 645,  405,  114,  ...,  731,  611,  405],
+        [ 586,  447,  447,  ...,  405,   33, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[1091,  114,  684,  ...,  114,  405,  684],
+        [ 645,  611,  213,  ...,  611,  611,  611],
+        [   0,  151,  967,  ...,  865,  645, 1072],
+        ...,
+        [ 980,  865,  865,  ...,  865,  865,  645],
+        [ 151,  964,  151,  ...,  493,   65,  859],
+        [ 790,  447,  151,  ...,  868, 1058, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[1058,  447,  790,  ...,   36,  961,  597],
+        [ 966,  803,  675,  ...,   77,   77,   77],
+        [  10,  151,  151,  ...,  493,  441,  718],
+        ...,
+        [  36,  325,   65,  ...,  152, 1058, 1131],
+        [1050,  791,  645,  ...,  242,  859, 1131],
+        [1056,  405,  539,  ...,  514,   36, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 790,   65,   65,  ...,  790,  790,  790],
+        [1119,  951,  791,  ...,  224,  868,  718],
+        [ 151,  151,  213,  ...,  645,  859, 1072],
+        ...,
+        [  65,   65,   65,  ...,  803,  493,  868],
+        [  65,  980,  151,  ...,  675,  675,  114],
+        [ 114,  114,  594,  ...,  114,  865,  718]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 257,  684,  723,  ...,  227,  203,  718],
+        [ 790,  114,  790,  ...,   77, 1050,  868],
+        [ 114,  151,   65,  ..., 1117,  781,  645],
+        ...,
+        [ 447,  447,  447,  ..., 1058,  151, 1018],
+        [ 151, 1119,  594,  ...,  405,   36,  865],
+        [ 213,  645,  645,  ...,  114,  645,  865]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 65, 151,  65,  ..., 493, 645, 859],
+        [213, 980,  65,  ..., 493, 868, 611],
+        [902, 980, 645,  ..., 455, 645, 865],
+        ...,
+        [151, 594, 447,  ...,  36, 697, 645],
+        [213, 645, 645,  ..., 645, 645, 405],
+        [447, 416, 980,  ..., 868, 611, 338]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  213,  151,  ...,  114,  791,  865],
+        [ 594,  151,  594,  ...,   36,   36, 1072],
+        [  65,   65,  151,  ..., 1002,  242,  645],
+        ...,
+        [ 614,  447,  693,  ...,  224,  645, 1131],
+        [ 229,  229,  114,  ...,  611,  645, 1131],
+        [  10,   65,   65,  ...,   20,  868, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  114,  151,  ..., 1002,  542,  865],
+        [ 114,  114,   65,  ...,  967,  865,  645],
+        [ 447,  447,  790,  ...,   77,  994,  961],
+        ...,
+        [ 114,   65,  980,  ...,  611,  868, 1131],
+        [ 441,  151,  980,  ..., 1120, 1131, 1131],
+        [ 441, 1099,  594,  ..., 1018, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  675,  675,  ...,  291,  405,  611],
+        [ 790, 1072,   65,  ...,  405,  515,  739],
+        [ 645,  966,   65,  ...,  114,  611,  405],
+        ...,
+        [ 675,  611,   65,  ...,  675,  868, 1131],
+        [  16,  739,  333,  ...,  611,  611, 1131],
+        [  39, 1099,  645,  ...,  645,  224, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  645,  645,  ...,  684,  645,  242],
+        [ 423,  980,  803,  ...,  611,  611,  611],
+        [ 675,  675,   65,  ...,  684,  994,  675],
+        ...,
+        [ 675,  447, 1098,  ..., 1058, 1131, 1131],
+        [ 114,  114,   65,  ...,  611, 1131, 1131],
+        [ 151,  594,   65,  ...,  594, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 539,  902,  151,  ...,   36,  868,  684],
+        [ 114,  599,  980,  ...,  645,  645,  611],
+        [  10,  151,  344,  ...,  405,   36,  291],
+        ...,
+        [ 675,  447, 1124,  ...,  151, 1131, 1131],
+        [ 447,  447,  680,  ...,  675, 1131, 1131],
+        [ 114, 1099,  980,  ...,  338, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 951,  961,  980,  ...,  645,  594,  697],
+        [  65,  868,   65,  ...,  645,   69,   89],
+        [  10,  114,  132,  ..., 1058, 1058,  994],
+        ...,
+        [ 693,   65,  980,  ...,   95,  868, 1072],
+        [ 803,  964,  964,  ...,   36,   36,   36],
+        [ 790,   10,   65,  ...,  493,  224,  514]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  675,  980,  ...,  675,  675,  684],
+        [ 492,  213,  967,  ...,  645,  645,  611],
+        [ 325,  177,  595,  ..., 1115,  868,   36],
+        ...,
+        [ 645,  645,  865,  ...,  405,  718, 1131],
+        [ 675,  447,  447,  ...,  645, 1131, 1131],
+        [ 902,  980,  471,  ...,  181, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 645,  781,  151,  ...,   65,  844,  859],
+        [  65,   65,   65,  ...,  405,    2,  405],
+        [  65,  151,  680,  ...,  611,  611,  865],
+        ...,
+        [ 151,  693,  151,  ...,   36, 1131, 1131],
+        [ 447,  114,   65,  ...,  405, 1131, 1131],
+        [ 151,  441,  471,  ...,  868, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 471,   44,   65,  ...,  647,  238,  611],
+        [ 405,  964,  151,  ...,   36,  868,   36],
+        [ 887,  151,  151,  ...,  224,  868,  203],
+        ...,
+        [ 270,  376,  376,  ...,  684, 1131, 1131],
+        [  65,  151,  865,  ..., 1131, 1131, 1131],
+        [  65,    2,  611,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  645,  684,  ...,  791, 1058,  645],
+        [ 645,  594, 1031,  ...,   36,   36,  675],
+        [ 228,  151,  848,  ...,  532,  590, 1058],
+        ...,
+        [ 447,  902,   65,  ...,  645,  739, 1131],
+        [ 594,  151,  151,  ...,  865,  611, 1131],
+        [ 213,   10,  611,  ...,  865, 1093, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 803,  611, 1125,  ...,  859,  859,  539],
+        [ 675,  228,  693,  ...,   36,  718,  675],
+        [ 151,  151,  405,  ..., 1072,   36,   36],
+        ...,
+        [ 151,  980,  151,  ...,  868,  868,  493],
+        [ 213,  213,  151,  ...,  611,  859, 1131],
+        [ 675,   65,  151,  ...,  865,  291, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  151,  ...,  203,  611,  868],
+        [ 682,  770,  325,  ...,  606,  684,  684],
+        [ 114, 1098,  611,  ...,  739,  611,  739],
+        ...,
+        [ 151,   36,  151,  ...,  684, 1131, 1131],
+        [ 151,  151,  594,  ...,  611, 1131, 1131],
+        [ 229,  390,  325,  ...,  493, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 229,  611,  803,  ...,  213,  611,  405],
+        [ 964,   65,  980,  ...,   36,  532,  606],
+        [ 675,  675,  151,  ...,  739,  967,  865],
+        ...,
+        [ 471,  471,  151,  ..., 1072, 1131, 1131],
+        [ 114,  611,  594,  ...,  611, 1131, 1131],
+        [ 675,  611,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 961,  228,  228,  ..., 1058,  207,  718],
+        [ 447,  680, 1058,  ..., 1058,  152,  405],
+        [ 405,  151,  151,  ...,  405,  868,  645],
+        ...,
+        [ 151,  151,  680,  ..., 1131, 1131, 1131],
+        [ 645,  790,  471,  ..., 1131, 1131, 1131],
+        [ 865,  918,  611,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  645,   36,  ...,   36,   36, 1072],
+        [ 902,  693,  980,  ...,  868,  684,  599],
+        [ 675, 1099,   10,  ...,  152,  781,  291],
+        ...,
+        [ 902,  980,  693,  ...,  684, 1131, 1131],
+        [ 868,  868,   65,  ...,  675, 1131, 1131],
+        [ 675,    2,  228,  ...,  718, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 611,  151,  980,  ...,  586,  865,  611],
+        [ 697,  535,  535,  ...,   36,  535, 1072],
+        [ 151,  213,  114,  ...,  114,  645,  645],
+        ...,
+        [ 594, 1099,   65,  ..., 1131, 1131, 1131],
+        [ 711,  980,  902,  ..., 1131, 1131, 1131],
+        [ 447,  937,  447,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 693,  684,  270,  ...,  684,   20,  684],
+        [ 151,  151,  586,  ...,   77, 1050,  586],
+        [ 980,   65,  980,  ...,  868,   95,   22],
+        ...,
+        [ 675,  980,   65,  ..., 1131, 1131, 1131],
+        [  44,   44,   65,  ..., 1131, 1131, 1131],
+        [ 887,  229,  152,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  868, 1036,  ...,  684,  675,  675],
+        [ 961,  151,  471,  ...,   36, 1115,  611],
+        [ 448,   65,  592,  ..., 1039,  532,  151],
+        ...,
+        [ 980,   65,  594,  ..., 1131, 1131, 1131],
+        [  65,  151,   65,  ..., 1131, 1131, 1131],
+        [ 789, 1039,   39,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  937,  ..., 1125,  611,  834],
+        [ 151,  151,  151,  ..., 1131, 1131, 1131],
+        [  10,  680,  431,  ..., 1131, 1131, 1131],
+        ...,
+        [ 597,  583,   65,  ..., 1131, 1131, 1131],
+        [1039,  151,  151,  ..., 1131, 1131, 1131],
+        [ 213,  539,  213,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  114,  645,  ...,  405,  213,  405],
+        [  33,  325,  539,  ..., 1131, 1131, 1131],
+        [ 151,  114,  114,  ..., 1131, 1131, 1131],
+        ...,
+        [ 213,  151,  282,  ..., 1131, 1131, 1131],
+        [  65,  680,  980,  ..., 1131, 1131, 1131],
+        [ 675,  594,  693,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  594,   65,  ...,  739,  849,  611],
+        [ 447,  447,  539,  ...,  675,  532, 1018],
+        [ 213,  217,   65,  ...,  675,   77,  834],
+        ...,
+        [ 645,  645,  645,  ..., 1131, 1131, 1131],
+        [  65,  937,   65,  ..., 1131, 1131, 1131],
+        [1050,  114,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,   65,  ...,  114,  675,  834],
+        [ 594,  376,  980,  ...,  684,  594,    2],
+        [  65,  151,  980,  ...,  868,  961,  684],
+        ...,
+        [ 611,  803,  151,  ...,  381,  865,   65],
+        [ 697,  114,  114,  ...,  731,  645, 1131],
+        [ 645,  645,  645,  ...,  865, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  980,  684,  ...,  791,  896,  114],
+        [ 151,  790,   65,  ..., 1060,  868,  868],
+        [ 675,  151,  554,  ...,  611,  282,  718],
+        ...,
+        [ 151,  151,  151,  ...,  645, 1131, 1131],
+        [ 980,  980,  645,  ...,  532, 1131, 1131],
+        [ 228,  228,  586,  ...,   22, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,   65,  447,  ...,  223,  868,  405],
+        [ 739,  213,  114,  ...,  242,  515,  890],
+        [ 213,  675,   65,  ...,  865,  405,  865],
+        ...,
+        [  10,  980,  441,  ...,  718, 1131, 1131],
+        [ 151,  213,  980,  ..., 1131, 1131, 1131],
+        [ 213,  790,  675,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 684,  447,  680,  ...,   33,   33,  718],
+        [ 213,  611,  611,  ...,  493,  611,  611],
+        [ 114,  902,  675,  ...,  697,  645,  868],
+        ...,
+        [ 790,  594, 1072,  ...,  471,   70,  645],
+        [ 213,   65,   65,  ...,  493,  675,  718],
+        [  20,   65,  684,  ...,  325,  531,  868]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  697,  803,  ...,  325,  967,  514],
+        [ 675,  594,  680,  ...,  675,  868,  675],
+        [ 193,  114,   65,  ...,   36,  645,  645],
+        ...,
+        [ 213,   65,   65,  ...,  213,  859, 1072],
+        [ 675,  448,   65,  ..., 1050,  739,  181],
+        [ 645,  125,  645,  ...,  645,  645,  405]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 790,  539,  980,  ...,   36,  868,  961],
+        [ 980,  416,  594,  ...,  675,  675,  675],
+        [ 697,   36,  114,  ...,   36,  865,  152],
+        ...,
+        [ 675,   65,   65,  ...,  331,  242,  416],
+        [ 151,  151,  151,  ...,  611,  868, 1131],
+        [ 447,  447,   70,  ...,  405,  868, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,   65,  ...,   36,  675,  611],
+        [ 790,  151,  151,  ...,  114,  213,  114],
+        [  65,  151,  151,  ...,  213,  611,  868],
+        ...,
+        [ 213, 1099,  724,  ...,  790,  790,  790],
+        [ 868,  868,  645,  ...,   36,  645,  611],
+        [ 151,  213,  447,  ...,  666,   70,  151]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   36, 1058,  ...,  223,  865,  220],
+        [ 645,  645,  471,  ...,   36,  535,  405],
+        [ 447,   65,  151,  ...,   36,  242,  834],
+        ...,
+        [ 980, 1058,  980,  ...,   36,  606, 1018],
+        [ 448,  980,  405,  ..., 1002,  611,  645],
+        [ 896,   65,  896,  ..., 1058,  645, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 419,  594,  151,  ...,  114,  868,  684],
+        [ 675, 1119,  441,  ...,  675,  718,  718],
+        [ 675,   65,   65,  ...,  865,  865,  611],
+        ...,
+        [ 611,   65,   65,  ...,    2,  868,  114],
+        [  65,  447,  151,  ...,  213,  228,  494],
+        [ 645,  816,  594,  ...,  849, 1072,  865]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,  151,   65,  ...,  493, 1039,  151],
+        [ 441,  151,   65,  ...,  594,  489,  868],
+        [ 151,  980,  594,  ...,  405,  405,  471],
+        ...,
+        [ 447,  447, 1058,  ..., 1058,  961,  645],
+        [ 887,  447,  680,  ...,  868,  592,  961],
+        [  10,   10,  151,  ...,   36,   36,  611]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,  447,   65,  ...,  385,  532,  611],
+        [ 980,   65,   65,  ...,  859,  532,  859],
+        [ 611,  611,  151,  ...,  152,  611,  868],
+        ...,
+        [  65,  471,  151,  ...,   36,  718, 1131],
+        [ 611,  151,  611,  ...,  611,  611, 1131],
+        [ 929,  151,  594,  ...,  594,  684, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,  998,  ...,  865,  998,  405],
+        [ 675,  151,  594,  ...,  675,  513,  220],
+        [ 645,  213,  865,  ...,  645,  594,  645],
+        ...,
+        [  44,  583,  645,  ...,  420, 1131, 1131],
+        [ 594,  964,   65,  ...,  675, 1131, 1131],
+        [ 447,  447,  447,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,   65,  980,  ...,  611,  868,  868],
+        [ 902,  980,  980,  ...,  611,  647,  611],
+        [ 594,  594,  213,  ..., 1117,  645,  114],
+        ...,
+        [ 242,  594,  980,  ...,  781,  675,  675],
+        [ 228,   65,  228,  ...,  684,  868,  611],
+        [ 611,  611,  114,  ...,  405,  865,  611]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[937, 151, 447,  ..., 865,  70, 994],
+        [114, 611, 998,  ..., 405, 611, 405],
+        [441,  10,  65,  ..., 718, 684, 684],
+        ...,
+        [980,  65, 151,  ..., 675, 611, 151],
+        [614,  10, 980,  ..., 989, 868, 586],
+        [980,  65,  65,  ..., 868, 151, 103]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  114,  980,  ..., 1117,  645,  420],
+        [ 448,  675,   65,  ...,  865,  865,  865],
+        [  65,  789,  645,  ...,  781,  645,  789],
+        ...,
+        [ 803,  594,  594,  ...,   65,  151, 1131],
+        [1099,  594,  114,  ...,   36,  532, 1131],
+        [ 400,  902,   65,  ...,  514,  532, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  675,   65,  ...,  645,  532,  114],
+        [ 611,  151,  151,  ...,  739,   11, 1120],
+        [ 675,  611,  680,  ...,  594,  865,  718],
+        ...,
+        [ 213,  213,   65,  ..., 1131, 1131, 1131],
+        [  65,   65,  539,  ..., 1131, 1131, 1131],
+        [ 803,  594,  594,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,  213,  151,  ...,  405,  203,  611],
+        [ 803,  416,  680,  ...,  493,  493,  151],
+        [ 611,  151,    2,  ...,  611,  611,  611],
+        ...,
+        [ 151,  151,  151,  ...,   36,  493,  684],
+        [  65,   70,  441,  ...,  718,  684, 1018],
+        [ 151,  151,  151,  ...,  611,  967,  282]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  645,  675,  ...,  781,  804,  868],
+        [ 213,  151,  151,  ...,  859,  859,  868],
+        [ 675,  875,  471,  ...,  611,  100,  868],
+        ...,
+        [ 675,  675,  307,  ...,  868,  868, 1131],
+        [ 868,  611,  583,  ...,  611,  338, 1131],
+        [ 693,  416, 1002,  ...,   20, 1058, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 312,   36,  405,  ...,   36, 1072, 1072],
+        [ 675,  645,  270,  ...,  532,  645,  611],
+        [  65,  980,  100,  ...,   36, 1018,  114],
+        ...,
+        [ 151,  151,  151,  ...,   77,  868,  611],
+        [ 622,  151,   65,  ...,  868,  868,  645],
+        [ 645,  594,  594,  ...,  865,  684, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  151,  151,  ...,  535,  377,  623],
+        [ 448,  447,  151,  ...,  865,  865,  865],
+        [ 151,  151,  114,  ...,  731,  645,  645],
+        ...,
+        [ 675,  114,  980,  ...,  645, 1131, 1131],
+        [ 645,  151,   10,  ..., 1131, 1131, 1131],
+        [ 213,   65,  114,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  213,  724,  ...,  998,  739,  739],
+        [ 675,   70, 1109,  ...,   36,  727,  675],
+        [ 724,  415,  724,  ...,  739,   36,  532],
+        ...,
+        [ 151,  151,  151,  ..., 1131, 1131, 1131],
+        [ 594,  868,  151,  ..., 1131, 1131, 1131],
+        [ 675,  114,   10,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,   65,  213,  ...,  405,  405,  611],
+        [ 448,  675,  680,  ...,  471, 1091,  611],
+        [ 213,  980,  980,  ...,  223, 1107,   10],
+        ...,
+        [ 675,  675,   65,  ...,  114, 1131, 1131],
+        [  65,  611,  611,  ...,  645, 1131, 1131],
+        [ 151,  151,  151,  ...,  645, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 856,  312,  539,  ...,  816,   36,  645],
+        [ 980,  228,  594,  ...,  114,   36,  152],
+        [  44,  583,  998,  ...,  420,  611,  224],
+        ...,
+        [ 611,  114,  980,  ...,  684, 1131, 1131],
+        [ 114,  114,  611,  ...,  335, 1131, 1131],
+        [ 356,  868,  405,  ..., 1072, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  865,  611,  ...,  114,  611,  611],
+        [ 693,  645,  645,  ...,  535,  535,  535],
+        [ 675,   65,  114,  ...,  645,   36,   33],
+        ...,
+        [ 980,  344,  645,  ...,  868,  645, 1131],
+        [ 980,  594,  594,  ...,   36,  405, 1131],
+        [ 645,  151,  645,  ...,  868, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  611,   65,  ...,  493,  611,  611],
+        [  65,   65,   65,  ...,  114,  675,  868],
+        [ 213,  980,  151,  ...,  964,  868,  645],
+        ...,
+        [ 419,  447,  447,  ..., 1131, 1131, 1131],
+        [ 447,  964,   65,  ..., 1131, 1131, 1131],
+        [ 675,  675,  594,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 902,  675,  441,  ...,  697,  228,  790],
+        [ 675,  675,  645,  ...,  675,  868,  868],
+        [ 645,  980,  645,  ...,  224,   36,  325],
+        ...,
+        [ 675, 1002,  724,  ..., 1131, 1131, 1131],
+        [ 675,    0,  980,  ..., 1131, 1131, 1131],
+        [ 673,  416,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  594,   65,  ...,   36,  647,  611],
+        [ 896,  896,   20,  ...,   65, 1131, 1131],
+        [ 803,  151,  803,  ..., 1131, 1131, 1131],
+        ...,
+        [ 803,  114,   65,  ..., 1131, 1131, 1131],
+        [ 350,  980,  539,  ..., 1131, 1131, 1131],
+        [ 151,    0,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 611,  611,  151,  ...,  611,  611,  611],
+        [ 213,  213,  967,  ...,   36,  859,  859],
+        [ 980,  594,   65,  ...,  152,   36,  151],
+        ...,
+        [  44,  980,  151,  ..., 1131, 1131, 1131],
+        [ 803,  151,  151,  ..., 1131, 1131, 1131],
+        [ 151,  213,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,  583,  447,  ...,  152,  228,  611],
+        [ 151,  151,  680,  ...,  291,  645,  152],
+        [ 675,   65,  680,  ..., 1131, 1131, 1131],
+        ...,
+        [ 114,  151,   65,  ..., 1131, 1131, 1131],
+        [ 416,  151,  675,  ..., 1131, 1131, 1131],
+        [ 803,  213,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 441,  151,  151,  ..., 1002,  865,  592],
+        [ 645,  645,  594,  ..., 1131, 1131, 1131],
+        [ 213,    2,   10,  ..., 1131, 1131, 1131],
+        ...,
+        [ 358,  151,   65,  ..., 1131, 1131, 1131],
+        [ 114,  151,   65,  ..., 1131, 1131, 1131],
+        [ 813,  416,  680,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 448,   65,  781,  151,  466,  282,  902,  739,  613,  739,  724,  375,
+           89,  223,  447,  613,  447,  697, 1039,   91,   65,  712,   65,  390,
+           65,  848,  724,  633,  447, 1048,  229,   44,  633,  781,  912,   33,
+          220, 1018,  697,  447,  447,  242, 1023,  447,   91,  447,  447,  633,
+          724,   65,   65,  980,  114,  114, 1058,  114,   65,  331,  515,  868,
+          611,  739],
+        [ 151,  151,  151,  151,  151, 1039,   65,   65,  860,  868,  509,  859,
+          859,  859,  859,  230,  859,  132,  231,  859,  775,  539,  431,  622,
+          594,  961,  539,  594,    2,  151,  594,  718,  509,  405, 1039,  859,
+          859, 1039,  886,  132,  822,  380,  473,  859,  132, 1056, 1013,   36,
+          376,  902,  151,  405,  961,   36,  790,   36,  231,   36,   36,  405,
+           36,  151],
+        [ 594,   65,  594,  980,  980, 1115,  381,  790,  964,  229,  594, 1058,
+          471,  859,  595, 1058,  594,   95,   95,  859,  859,  418, 1005, 1005,
+          215,  594,  170,  677,  594,  312, 1005,  859,  471,  275,   31, 1018,
+         1005,  312,  848,  275,  132, 1005,  826,  804,  826,  848,  597, 1115,
+          731,  911,   36,  896,  594,  980, 1058,   36,  405,   36,   36,   36,
+          868,  675],
+        [ 418,  151,    0,  725,  405,  803,  697,  803,  849,  132,  132,  282,
+          282,  132,  132,  282,  132, 1120,  253,  132,  132,  132,  132,  132,
+          253,  344,   65,  980,  399,  675,    0,   65,  230,  405,  325,  114,
+          645,    0,  170,  697,  227,  229,  613,  282,  151,   81, 1120,  132,
+          282,  282,  282,  151,  431,  849,  865,  132, 1120,  592,  998,  865,
+         1050,   65],
+        [  65,  447,  132,    0,  848,  325,  132,  790,  325, 1060,  836,  220,
+          447,  325,  177,   42,   42,  151,  347,  220,  220,  220,  848,  790,
+           42,  177,  790,  586,  813,  781,  325,  379,  132,   42,  220,   42,
+          220,  151,  790,   10,  790,  151, 1116,  539, 1031,  960,  647,  381,
+          675, 1058,    0,  220,  108,  622,  790,  213,   36,  224,  132,  718,
+          739, 1131],
+        [ 611,  405,  803,  980,  594,  980,  859,  964,  675,  865,  471,  849,
+           36, 1058,  865,  539,  675,  790, 1058,  980,  532,  405,  859,  535,
+          647,  535,  535,  535,  535,  535,  535,  859,    9,  132,  132,  535,
+         1018,   36,   36,   36,  325,  471,  613,  535,   36,  132,  312,   36,
+          471,  471,   36,   36,   36, 1115,   36,  859,   36,  645,  859,   36,
+          611, 1131],
+        [  65,   65,  151,   65,  230,  675,    0,   61,  291,  849,  647,  675,
+          380,  380,  229,  405,    0,  347,  868,  229,  431,  896,  896,  896,
+          623,  229,  431, 1083, 1083,   90,  151,  431,  485,  229,   10,  229,
+          405,  824, 1100,  478,  390,  282,  331,   61,   90,  680,  282,   90,
+          980,  896,  980,  980,  431,  980,  405,  865,  675,  675,  980, 1115,
+          230, 1131],
+        [ 980,  151,  980,   65,  586,  633,  405,  583,  583,  114,  181,  282,
+         1042,  151, 1042,  865,  259,  447,  724, 1018,  114,   65,   65,  229,
+          229,  447,  447,  181,  267,  267,  583,  447, 1083,  583,  865,  586,
+          447,  905,  447,  583,  282,  375,  447,   64,   10,  614,  114,  114,
+          535,  114,  868,   65,  151,  447,  539,  739,  633,  739,  739,  471,
+          611, 1131],
+        [ 151, 1002,  614,  447,  151,  675,   36,  865,  849,  803,  739,  220,
+           42,  445,  230,  445,   42,  211,  220,   36,  445,  803,  230,  445,
+          445,  132,   42,  447,  686,   89,  788,  447,  445,   42,   65,  441,
+          132,  230,  848,  213,  748,  748,  705,   65,   89,  675,   65, 1098,
+         1002,  960,  684,  229,  960,  213,  151,  790,   36,   36, 1002,  967,
+          645, 1131],
+        [  65,  151,  151,  680,  514,   65,  647,   65,   65,  151,  532, 1058,
+          803, 1018,  848,  132,  535,   65,  151,   65,  614, 1115,   65,   36,
+           65,   65,  790,  151,   65,   65,  151,  230,  230,  535,  790,  848,
+          132,  535,  230,  132,  535,  887,  535,  912,  535,  535,  535,  535,
+          535,  535,  647,   65,  865,  675,   65,   89,  884,  493,   36,   65,
+         1131, 1131],
+        [ 980,   65,  151,  645,   65,   65,  325,  151,   36,  325,   36,   65,
+          849,  746,  333,   65, 1115,  535,  224,  535,   65,  151,  333,  482,
+          405, 1115,    0,  887,  887,    0,  151,  859, 1115,  887,  887,  887,
+            0,  887,   89,  295,  887,  647,  645,  937, 1058,  151,  151,   70,
+          151,  151,  482,    0,  405,   65,  896,   36,  535,  967,   36,  645,
+         1131, 1131],
+        [1058,  447,  896,  675,  684,  333,  684,  606,  606,  719,  989,  989,
+          989,   39,  242, 1058,  355,  114,  114,  114,  684,  980,  859,  859,
+          132,  132,  813,  132,  132,  132,  647,  132,  962,  613,  224,  132,
+          606, 1112,  132,  647,  647,  333, 1058,  114,  813,  606,  594,  482,
+           65,  333,  980,   65,  684,  114,  606,  684,  684,  718, 1131, 1131,
+         1131, 1131],
+        [ 770,  213,  791,  594,  791,  447,  684,  680,   65, 1091,  447,  447,
+          355,  132,  229,  381,  697,  675,  951,   42, 1060,  723,  723,  535,
+           65,   65,   52,  718, 1058,  356,  242,  781,  230,   65,   65,  675,
+          723,  220,  132,  132,  132,  718,  242,  132,   65,  132,   65,   65,
+           33,   65,  203,   65,  583,  416, 1117,  242,   65, 1131, 1131, 1131,
+         1131, 1131],
+        [ 447,  447,  447, 1058,  980,  377,  980,  859,  964,  514,  225,  532,
+         1041,  790,  790,  532,  630,  230,  518,  447,  790, 1092,  447,  447,
+          441,  532,  535,  790,  790,  447,  447,  447,  424,  447, 1041,  447,
+          447,  790,  532,  790,  151,   65,  790,  790,   14, 1058,  447,  447,
+          790, 1041,  790,  554,   36,  865,  645, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 868,  583,  151,   65,   65,  114,   65,  238,  114,  739,  223, 1102,
+         1102, 1083,    0,   89,  126,  739,  613,  739, 1039,  822,  213,  647,
+          739,   65,   65,   65,  151,   65, 1109,   65,   65,   65,   36,   65,
+           65,  868, 1046,   10,  223,  114, 1039,  441,  151,  943,  213,  126,
+            0,   89,  613,  151,  739,  645,  684, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131],
+        [ 151,   65,   44, 1058,  535,  151,  644,   36,  677,  790,   36,  677,
+           36,  418,  870,   57,  132,  132,  103,  848,  431,  790,   36,   65,
+         1058,  535,  535,  223,  223,  535,  284,  677,   36,  859, 1070,  380,
+          859,  132,  731,   90,  859,   36,   65,   65,  645,   65,   65,   36,
+          675,  535,  645, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131,
+         1131, 1131]], device='cuda:0')2022-08-22 07:09:36,004 DEBUG TRAIN Batch 0/100 loss 134.621475 loss_att 90.199287 loss_ctc 238.273224 loss_ctc_origin 137.349701 loss_ctc0 473.761444 lr 0.00000208 rank 0
+
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,   36,  980,  ...,  859,  594,  684],
+        [ 151,  151,  151,  ...,  493,  884,  203],
+        [ 594,  151,  980,  ...,  471,  645,  611],
+        ...,
+        [ 697,  896,  697,  ...,  645, 1131, 1131],
+        [ 611,  447,  447,  ...,  776, 1131, 1131],
+        [ 151,  680,   65,  ..., 1125, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 645,  213,  114,  ...,  739,  645,  645],
+        [ 599,  964,  151,  ...,  865,  535,  865],
+        [ 675,  680,  594,  ...,  856,  152, 1072],
+        ...,
+        [ 151,  213,   65,  ...,  645, 1131, 1131],
+        [ 611,   65,  151,  ...,  645, 1131, 1131],
+        [ 151,    2,  213,  ...,  405, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151, 1109,  ...,  739,  405,  739],
+        [ 790,  447,  447,  ..., 1058,  790,  152],
+        [ 896,  739,  447,  ...,  320,  684,  645],
+        ...,
+        [ 151,  790,  693,  ...,  868,  675, 1131],
+        [ 447,  151,  151,  ...,  537,   65, 1131],
+        [   0,  611,  803,  ..., 1093,  611, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  980,  213,  ...,   36,  865,  675],
+        [  65,   65,   65,  ...,  220,  471,  865],
+        [  36,  675,   65,  ...,   36,  675,  868],
+        ...,
+        [ 611,   65,  680,  ...,  405,  645, 1131],
+        [  65,  151,  151,  ..., 1018,  645, 1131],
+        [ 447,   65,  680,  ...,  114,  325, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  151,    0,  ...,  865,  405,  865],
+        [ 419,  447, 1058,  ..., 1058,  865,  611],
+        [ 675,  213,  586,  ...,  381,  381,  859],
+        ...,
+        [ 680,  151,  151,  ...,  859, 1131, 1131],
+        [ 980,   70,  790,  ...,  675, 1131, 1131],
+        [ 151,  151,  151,  ...,  152, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,    0,  ..., 1115,  493,  493],
+        [ 980,   10,  151,  ..., 1058,  611,  611],
+        [ 675,  645,  100,  ...,  684,  697,  405],
+        ...,
+        [ 152,   65,  151,  ...,  865,  859,   65],
+        [ 114,  114,  114,  ...,  405,  645,  405],
+        [ 448,  151,  151,  ...,  228,  645, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  902,   65,  ...,  623, 1117,  611],
+        [ 213,   65,  592,  ...,  675,  675,  405],
+        [ 151,  151,   65,  ...,   36,  868,  514],
+        ...,
+        [ 675,  675, 1091,  ...,  868,  645, 1131],
+        [ 114,   65,  114,  ...,  684,  114, 1131],
+        [  65,  887,  441,  ...,  224,  645, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 447,   44,   44,  ...,  532,  868,  611],
+        [ 675,  594,  675,  ..., 1109,  675,  675],
+        [ 151,  151,  151,  ...,  471,   95,  151],
+        ...,
+        [ 151,  151,  151,  ...,  739,  645, 1131],
+        [ 448,   65,  405,  ...,  967, 1018, 1131],
+        [ 405,  865,   65,  ...,  282, 1072, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  89,  675,  697,  ...,  114, 1117,  865],
+        [ 675,  680,  980,  ...,  865,  675,  865],
+        [ 599,  980,  645,  ...,  868,  865,  739],
+        ...,
+        [1091, 1098, 1072,  ...,   77,  645, 1131],
+        [ 114,  680,  680,  ...,  611,   39, 1131],
+        [ 680,  680,  680,  ..., 1117,  103, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  151,  447,  ...,  447,  447,  420],
+        [ 675,  594,  151,  ...,  865,  865,  405],
+        [  65,   65,   65,  ...,  114,  611,  645],
+        ...,
+        [ 114,  535,  114,  ...,  114,  611,  114],
+        [ 790,  151,  151,  ...,  739,  645,  223],
+        [ 980,  790, 1099,  ...,   36,  611,  645]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 535,  535,  471,  ...,   36,   36,   36],
+        [1099,  213,   65,  ...,   36,    2,  611],
+        [ 151,  151,  151,  ...,  697,  868, 1058],
+        ...,
+        [  65,    2,  447,  ...,   36,  868,  405],
+        [ 114,  693,  114,  ...,  675,  228,  684],
+        [ 594,  347,   10,  ...,  998,  405,  611]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  447,  964,  ...,  856,  224,  405],
+        [ 697,  447,  376,  ...,  684,  868,  357],
+        [ 902,  980,   65,  ...,  731,  606, 1058],
+        ...,
+        [ 902,  539,   65,  ...,  868,  645, 1131],
+        [ 151,  151,  645,  ...,   65,   36, 1131],
+        [ 675,  151,  213,  ...,  405,  242, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  151,  868,  ...,  868,  645,  405],
+        [  10,  980,   65,  ...,  493,  493,   36],
+        [ 213,  151,  645,  ...,   36,  645,  114],
+        ...,
+        [  44,   65,  447,  ...,   36,  151, 1131],
+        [ 645,  660,  594,  ...,  203, 1131, 1131],
+        [  10,  416,  675,  ...,  606, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  447,  447,  ...,  405, 1018,    0],
+        [ 228,   10,  980,  ...,    0,  868,  684],
+        [ 790,  693,  856,  ...,   36,   36,  675],
+        ...,
+        [ 448,  980, 1060,  ...,  675,  611,    0],
+        [ 213,   44,  611,  ...,  611,  611,   36],
+        [ 151,  787,   65,  ...,  493,  859,  859]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 325,  151,  151,  ...,  535,  493,   36],
+        [ 675,    0,  114,  ...,  114,  718,  868],
+        [ 675,  980,  980,  ...,  645,  739,  739],
+        ...,
+        [ 790,  220,  151,  ...,   77,  532, 1131],
+        [ 448,  447,  447,  ...,  611,  611, 1131],
+        [ 213,  151,  447,  ...,  114,  611, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,  645,  645,  ...,  645,  868, 1117],
+        [ 213,  405,  447,  ...,  405,  405,  405],
+        [ 645,   65,  980,  ...,  645, 1117,  611],
+        ...,
+        [ 213,  980,  151,  ...,  859,  405, 1131],
+        [ 675,  675,   39,  ...,  675, 1131, 1131],
+        [  65,  980,  151,  ..., 1072, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  405,  151,  ...,   36,  868,  675],
+        [ 594,  675,  675,  ...,  645,  868,  868],
+        [ 902,   10,   65,  ...,  865,    0, 1117],
+        ...,
+        [ 896,  675, 1060,  ...,   36, 1131, 1131],
+        [ 213,  675,   65,  ...,  859, 1131, 1131],
+        [ 645,  980,  594,  ...,   10, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  902,  151,  ...,   36,  868,   36],
+        [ 693,  693,  693,  ...,  718, 1091,  718],
+        [ 645,  868,  611,  ...,  645,  282,  645],
+        ...,
+        [ 151,  151,  151,  ...,  441,  718, 1131],
+        [ 455,  611,  684,  ...,  865,  884, 1131],
+        [ 697,  790,  151,  ...,  859,  868, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 645,   65,   65,  ...,  493,  865,  739],
+        [ 645,  151,  594,  ...,   10,  781,  405],
+        [   0,  220,  966,  ...,  718, 1050,  675],
+        ...,
+        [ 213,  151,  151,  ...,  684,  405,  151],
+        [ 213,  151,   65,  ..., 1117,  645,  242],
+        [   0,  151,  151,  ..., 1115, 1072,  675]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 448,  151,  151,  ...,  868,  611,  611],
+        [ 680,  680, 1091,  ...,  680, 1107, 1093],
+        [ 896,  675,  114,  ...,  804,  114,  114],
+        ...,
+        [ 114,  114,  980,  ..., 1131, 1131, 1131],
+        [  65,  151,  680,  ..., 1131, 1131, 1131],
+        [ 964,  447,   39,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  980,  151,  ...,  684,  967,  611],
+        [ 599,  594,  868,  ...,  868,   36,  405],
+        [ 594,  151,  151,  ...,  613, 1093, 1107],
+        ...,
+        [ 675,   65,   65,  ...,  980,  675, 1131],
+        [1039,  902,  151,  ...,  420,  645, 1131],
+        [ 447,  675,   65,  ...,  675, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 114,    0,  114,  ...,  647, 1058,  834],
+        [ 151,  291,  675,  ...,  611,  868, 1093],
+        [ 790,  790,  675,  ...,   36,   36,  645],
+        ...,
+        [ 614,  680,  431,  ...,  718,  967, 1131],
+        [ 228,  980,  447,  ...,  385,  684, 1131],
+        [1109, 1099,  980,  ...,  348,  338, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  611,  ...,   36,  865,  611],
+        [ 675,  448,  675,  ...,  224,  731,  865],
+        [ 980,  675,    0,  ...,   36,  868,  865],
+        ...,
+        [ 471,  151,  151,  ...,    0,  859, 1131],
+        [ 531,  980,  151,  ...,  859,    0, 1131],
+        [ 448,  213,    0,  ...,  684, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 229,  217,  675,  ...,  611,  405,  739],
+        [1124,  937,  675,  ...,  242,  781,  181],
+        [ 675,  980,  151,  ...,   95,  718,  151],
+        ...,
+        [ 539,  151,  151,  ..., 1131, 1131, 1131],
+        [ 592,  447,  151,  ..., 1131, 1131, 1131],
+        [ 865,  997,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 594,  980,   65,  ...,  471,  868,   22],
+        [ 151,  151,  151,  ...,  203,  224,   65],
+        [ 675,    0,  680,  ...,  868,  441, 1131],
+        ...,
+        [  65,  586,    0,  ..., 1131, 1131, 1131],
+        [   0,  980,   65,  ..., 1131, 1131, 1131],
+        [ 228,  863, 1058,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   65,   65,  ...,  114,  532,  223],
+        [  10,   65,   65,  ...,  114,  611,  718],
+        [ 592,  114,    0,  ...,  739,  645,  645],
+        ...,
+        [ 213,  539,   65,  ...,  645,  420, 1131],
+        [  65,  734,  416,  ...,  611, 1131, 1131],
+        [ 213,  114,  998,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 980,  980,  790,  ...,  594,  645,    2],
+        [ 151,  151,  680,  ...,  493,  611,  675],
+        [ 611,  114,  152,  ...,  455,  455,  405],
+        ...,
+        [ 151,  151,   10,  ..., 1131, 1131, 1131],
+        [   0,  980,    0,  ..., 1131, 1131, 1131],
+        [ 599,  151,  594,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 896,  447,  693,  ...,    0,   36,  718],
+        [ 645,   65,   65,  ...,   39,  731,  611],
+        [ 697,  980,  868,  ...,  868,  697,  645],
+        ...,
+        [   0,  782,  447,  ..., 1131, 1131, 1131],
+        [ 675,  693,  151,  ..., 1131, 1131, 1131],
+        [   0,    0,   70,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,  447,  447,  ...,  868,  868,  282],
+        [  10,  645,  967,  ...,  865,  645, 1131],
+        [ 904, 1099,  151,  ...,  868,  611, 1131],
+        ...,
+        [ 228,  980,  228,  ..., 1131, 1131, 1131],
+        [ 675,  980,  586,  ..., 1131, 1131, 1131],
+        [ 611,  416,  213,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 896,  803,  151,  ...,  493,  645,  859],
+        [  65,  151,  151,  ..., 1131, 1131, 1131],
+        [ 682,  682,  980,  ..., 1131, 1131, 1131],
+        ...,
+        [ 213,  282,  868,  ..., 1131, 1131, 1131],
+        [ 675,    2,    0,  ..., 1131, 1131, 1131],
+        [ 675,  114,  217,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  447, 1060,  ..., 1115, 1060,  151],
+        [   0,    0,    0,  ...,  645,    0,  114],
+        [   0,  151,   65,  ...,  647,  611,  151],
+        ...,
+        [ 447,  447,  151,  ..., 1131, 1131, 1131],
+        [   0,    0,   65,  ..., 1131, 1131, 1131],
+        [   0,  448,  693,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 868,  675,  964,  ...,  645,  868,  586],
+        [   0,  151,    0,  ...,    0,  967,    0],
+        [ 447,  611,  151,  ...,  114,    0,    0],
+        ...,
+        [ 675,  100,    0,  ..., 1131, 1131, 1131],
+        [ 447,   65,  980,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 782, 1115, 1115,  ...,   36, 1115, 1072],
+        [   0,    0,    0,  ...,    0,  868,  586],
+        [ 790,    0,  151,  ...,  790,  220,    0],
+        ...,
+        [ 645,  151,  151,  ...,  675,  868, 1131],
+        [   0,  980,   65,  ...,    0, 1131, 1131],
+        [1124,  114,    0,  ..., 1031, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,   65,    0,  ...,  675,  791,  152],
+        [ 151,  151,  151,  ...,    0,  611,   36],
+        [ 611,  151,  611,  ...,   36,   36,   89],
+        ...,
+        [ 447,  447,    0,  ...,  865,  859, 1131],
+        [ 675,  633,  980,  ...,  611,  151, 1131],
+        [ 980,    0,  727,  ...,    0,  535, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  675,  151,  ...,  594,  967,  865],
+        [ 151,  114,  151,  ...,  645,  645,  739],
+        [ 693,  980,  447,  ...,    2,  561,  718],
+        ...,
+        [   0,  447,  151,  ...,    0,  151, 1131],
+        [1039,   65,   65,  ..., 1018,    0, 1131],
+        [ 980, 1099,   65,  ...,  645,  675, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[1072,  471,  675,  ...,  675,  868,  645],
+        [   0,  416,  998,  ...,  493,  967,  114],
+        [ 734,  228,  680,  ...,  865,  282,  865],
+        ...,
+        [   0,  217,  213,  ...,  405, 1131, 1131],
+        [ 151,   65,   65,  ...,  645, 1131, 1131],
+        [   0,   65,    0,  ...,  586, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,   10,  114,  ...,  645,  645,  405],
+        [ 151,  151,  151,  ...,   36,  645, 1091],
+        [   0,  151,    0,  ...,  675,    0,  675],
+        ...,
+        [ 594,  594,  594,  ...,  675, 1018, 1131],
+        [ 675,    0,  151,  ...,  967,  675, 1131],
+        [   0,  680,    0,  ...,    0,  718, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,  967,  ...,    0,   69,  868],
+        [ 611,   70,  645,  ...,  645,  405,  405],
+        [ 675,  151,  152,  ...,  675,  865,  152],
+        ...,
+        [ 790,    0,  647,  ...,   36,  865, 1131],
+        [ 734,  448, 1060,  ...,    0,  242, 1131],
+        [ 213,  611,    0,  ...,  998,  675, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  0, 151, 151,  ..., 325, 493, 493],
+        [614,   0, 447,  ...,   0, 447, 441],
+        [980, 419, 448,  ..., 405, 693, 697],
+        ...,
+        [902, 151, 151,  ..., 697, 868, 611],
+        [ 65, 512, 614,  ...,  36, 645, 151],
+        [595,  65, 980,  ..., 151,   0, 611]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  693,  980,  ...,  684,  611,   33],
+        [ 645,  645,  151,  ...,  645,  739,  151],
+        [ 447,   36,   65,  ...,    0,    0,  493],
+        ...,
+        [ 213,  645,  611,  ...,    0,  447, 1131],
+        [  65,    0,  151,  ...,    0, 1018, 1131],
+        [ 790,  790,  790,  ...,  868,  684, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 611,  151,  151,  ...,  611,    0, 1091],
+        [ 448,  213, 1039,  ...,  647,  611,  868],
+        [   0,  447,  151,  ...,    0,  242,  114],
+        ...,
+        [ 739,  151,   39,  ...,  377,  739, 1131],
+        [ 675,  151,   65,  ...,  611,  152, 1131],
+        [ 409,  151,  151,  ...,  181, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  471,  ...,  739,  739, 1010],
+        [ 151,  937,   65,  ...,  213,  739,  865],
+        [ 151,  151,  151,  ...,   95,   36,   36],
+        ...,
+        [ 592,  447,  151,  ...,  152,  291, 1131],
+        [ 114,  114,  114,  ...,  645,  645, 1131],
+        [ 980,  645,   65,  ...,  242,  405, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[980, 980, 151,  ...,  36, 405, 405],
+        [539, 675, 980,  ..., 114, 152, 675],
+        [448, 448, 675,  ..., 611,   2, 611],
+        ...,
+        [675, 675, 675,  ...,   0, 675, 338],
+        [583, 611, 724,  ..., 611, 611, 961],
+        [803, 980, 803,  ...,  36,  36, 103]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  10,  594,    0,  ...,   36,   36,  114],
+        [ 902,   65,   65,  ...,   36,  645,  684],
+        [   0,   10,  213,  ...,  611,  611,  377],
+        ...,
+        [ 132,  312,  693,  ...,   36,  868, 1131],
+        [ 865,    0,    0,  ...,  114,  718, 1131],
+        [   0,  448,  447,  ...,  151,  790, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  151,   65,  ...,  611,  859,  865],
+        [ 645,    0,    0,  ...,  282,  868,  834],
+        [ 980,  980,  980,  ...,  647,  868,  203],
+        ...,
+        [  69,  270,  108,  ..., 1018, 1131, 1131],
+        [ 803,  980,  151,  ..., 1072, 1131, 1131],
+        [1055,  447, 1058,  ...,  834, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,    0,  803,  ...,  225,    0,    0],
+        [  65,  151,   65,  ...,  405, 1115,  868],
+        [  65,  213,   65,  ...,  224,  213,  611],
+        ...,
+        [  10,  151,  151,  ...,  151, 1131, 1131],
+        [ 803,    0,    0,  ...,  718, 1131, 1131],
+        [ 782,  645,   42,  ...,  645, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,  151,  ...,    0,    0,  151],
+        [ 980,  151,  151,  ...,  739,  223,  341],
+        [ 213,  680,  114,  ...,  213,    2,  611],
+        ...,
+        [   0,  151,   65,  ...,  718, 1131, 1131],
+        [ 151,  151,  151,  ...,  868, 1131, 1131],
+        [ 980,  863,  980,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,  611,  998],
+        [ 151,  680,  344,  ...,    0,   36,  151],
+        [ 151,    0,    0,  ...,  645,    0,  151],
+        ...,
+        [ 114,  114,  114,  ...,  114,  151, 1131],
+        [ 645,  586,  151,  ...,  645,   36, 1131],
+        [ 151,   65,   65,  ...,    0, 1018, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  10,  151,  151,  ...,  868,  868,  611],
+        [  65,  213,   65,  ...,  611,  493,  611],
+        [   0,  151,  455,  ...,  865,   36,   36],
+        ...,
+        [ 213,  213,  586,  ...,  645,  645,  865],
+        [  65,   65,    0,  ...,  493,  865, 1131],
+        [ 448,    0,    0,  ...,  282,  645, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  217,   65,  ...,  493, 1091,  152],
+        [ 151,   65,   65,  ...,  611,  611,  493],
+        [ 409,  790,  980,  ...,  645,  865,  377],
+        ...,
+        [ 790,  447,  447,  ...,    0, 1131, 1131],
+        [ 447,  539,  680,  ...,  441, 1131, 1131],
+        [   0,  151,  151,  ...,  868, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,  151,  ..., 1107, 1091,  151],
+        [1018, 1072,    0,  ...,   36,  405,  203],
+        [   0,    0,    0,  ...,  152,    0,  611],
+        ...,
+        [   0,  213,    0,  ...,  675,  868,  151],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,  980,    0,  ...,  132,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[675, 675,   0,  ..., 405, 675, 405],
+        [  0, 675, 151,  ...,   0,   0, 865],
+        [  0,   0,   0,  ...,  36,   0,   0],
+        ...,
+        [675,   0, 980,  ...,   0, 675, 181],
+        [  0, 151,  65,  ..., 341, 611, 645],
+        [  0, 865,   0,  ..., 645, 645,   0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 114,  448,    0,  ...,  645,  865,  868],
+        [ 790,  151,  151,  ...,   36, 1115,    0],
+        [ 790,    0,  471,  ...,   36,  859, 1072],
+        ...,
+        [ 675,  151,  980,  ...,  675, 1131, 1131],
+        [ 918,  645,  611,  ...,  865, 1131, 1131],
+        [ 114,  980,  114,  ...,  645, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  220,    0,  ...,  114,    2,   89],
+        [   0,    0,  217,  ...,    0,  645,  645],
+        [ 790,    0,    2,  ...,   36,  471,  597],
+        ...,
+        [ 447,  447,  447,  ...,  152,  152, 1131],
+        [ 151,  151,  151,  ...,  151, 1131, 1131],
+        [ 980,  980,  980,  ...,  103, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 213,    0,  151,  ...,    0,  666, 1093],
+        [ 980,  848,  980,  ...,    0,    0,  868],
+        [   0,  151,  597,  ...,  152,  291,  291],
+        ...,
+        [ 331,    0,  966,  ...,    0, 1131, 1131],
+        [ 980,  270,  151,  ..., 1131, 1131, 1131],
+        [ 151,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,  980,  ...,    0,  865, 1093],
+        [ 594,   65,   65,  ...,  405,  868,    0],
+        [  65,  151,    0,  ...,  731,    0,  718],
+        ...,
+        [   0,    0,  151,  ..., 1131, 1131, 1131],
+        [ 151,    0, 1058,  ..., 1131, 1131, 1131],
+        [   0,    0,   65,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 645,  645,  645,  ...,  645,  865,  645],
+        [   0,    0,    0,  ...,    0,  282,  912],
+        [  44,  132,  400,  ...,  532,    0,  645],
+        ...,
+        [1060,    0,    0,  ...,   36, 1131, 1131],
+        [   0,   65,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  223,  447,  ...,    0,    2,  447],
+        [ 980,    0,  693,  ...,    0,  731,    0],
+        [ 151,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [1091,  151,  583,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,  675,  680,  ...,  224,  675,  675],
+        [ 447,  447,  447,  ...,  291,  865,  152],
+        [   0,    0,  151,  ...,    0,    0,  493],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,  151,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,  151,  ...,  647,    0,    0],
+        [ 217,  151,  151,  ...,  405,   36, 1072],
+        [ 217,  217,  400,  ...,    0,    0,    0],
+        ...,
+        [  65,  447,  151,  ..., 1131, 1131, 1131],
+        [ 114,  114,  114,  ..., 1131, 1131, 1131],
+        [   0,  980,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,    0,  ...,    0,    0,    0],
+        [ 151,  151,    0,  ...,    0,  834, 1131],
+        [  65,    0,  980,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,  341,  151,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [ 416,  693,  980,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,    0,  151,  ...,    0,  868,    0],
+        [   0,    0,  151,  ..., 1131, 1131, 1131],
+        [   0,  114,    0,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,  151,    0,  ..., 1131, 1131, 1131],
+        [ 980,  151,  675,  ..., 1131, 1131, 1131],
+        [ 790,  151,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  980,  151,  ...,   36,   36,  645],
+        [   0,    0,    0,  ...,   36,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,  151,  ..., 1131, 1131, 1131],
+        [ 980,  980,   65,  ..., 1131, 1131, 1131],
+        [ 151,  151,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  65,  151,    0,  ...,    0,    0,   36],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,  114],
+        ...,
+        [   0,  680,  151,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,  865, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  151,    0,  ...,    0,  282,  291],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [ 151,  937,  645,  ...,  645,  645,  675],
+        ...,
+        [   0,  980,   65,  ..., 1131, 1131, 1131],
+        [ 447,   65,    0,  ..., 1131, 1131, 1131],
+        [ 151,  980,  151,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,   10,    0,  ...,  471,    0,    0],
+        [   0,  151,  151,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,  645,  ...,    0, 1131, 1131],
+        [   0,  980,    0,  ...,  611, 1131, 1131],
+        [   0,    0,    0,  ...,   36, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [ 151,  771,    0,  ...,    0,    0,    0],
+        [   0,    0,  416,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,  416,  693,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,  405,  151,  ...,   36,    0,   89],
+        [   0,    0,    0,  ...,    0,    0,  675],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,  151,  ...,  790,    0, 1131],
+        [   0,    0,  151,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  151,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,  335,  739],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,  151, 1131, 1131],
+        [ 592,    0,  680,  ...,    0, 1131, 1131],
+        [ 151,  151,  151,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  213,    0,  ...,    0,    0,   16],
+        [   0,    0,    0,  ...,  994,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,   77],
+        ...,
+        [   0,  980,    0,  ...,    0,    0, 1131],
+        [   0,    0,  270,  ...,   33,  645, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,   36,    0, 1091],
+        [   0,    0,    0,  ...,    0,    0,  868],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,   39,  ...,  739,   58,  675],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,  213,    0,  ...,    0,  223, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,  151,  ...,   36,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,  223,    0,  151],
+        [   0,    0,    0,  ...,    0,    0,  152],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,  416,  693,  ...,    0,    0, 1131],
+        [   0,  114,    0,  ...,    0,   65, 1131],
+        [   0,    0,    0,  ...,  377,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,  645,    0],
+        [   0,    0,    0,  ...,    0,  535,    0],
+        [1091,    0,   65,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,  114,    0,    0],
+        [   0,    0,  151,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 675,    0,    0,  ...,   65,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,  645,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,   36,  865,   36],
+        [   0,   65,  151,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,  693,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,   0,  ...,   0,   0,   0],
+        ...,
+        [  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,  65,  ...,   0,   0,   0],
+        [  0, 213, 151,  ...,   0,   0, 645]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [ 980,  132,  132,  ...,    0,    0, 1131],
+        [   0,    0,   65,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,  151,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,  447,    0,  ...,    0,   36,    0],
+        [   0,    0,    0,  ...,    0,  834,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ..., 1072,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,  980,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,  151,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,  734,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[ 151,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,  151,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,  471,   36],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,  151,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,  151,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,  645,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [ 980,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,  151,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,  565,    0],
+        [   0,  680,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,  739,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,   65,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')2022-08-22 07:10:03,505 DEBUG TRAIN Batch 0/200 loss 128.004303 loss_att 91.452789 loss_ctc 213.291138 loss_ctc_origin 126.765915 loss_ctc0 415.183289 lr 0.00000408 rank 0
+
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0, 151,  ...,   0,   0,   0],
+        ...,
+        [  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,   0,  ...,   0,   0,   0],
+        [  0,   0,   0,  ...,   0,   0,   0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,  151,  151,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,  151,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,  645],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131],
+        [   0,    0,    0,  ...,    0,    0, 1131]], device='cuda:0')
+11有无报错
+12有无报错
+13有无报错
+14有无报错
+15有无报错
+16有无报错
+02有无报错
+00有无报错
+01有无报错
+0有无报错
+1有无报错
+2有无报错
+3有无报错
+4有无报错
+5有无报错
+6有无报错
+7有无报错
+8有无报错
+9有无报错
+10有无报错
+打印拼音向量看看
+tensor([[   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        [   0,    0,    0,  ...,    0,    0,    0],
+        ...,
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ...,    0, 1131, 1131],
+        [   0,    0,    0,  ..., 1131, 1131, 1131]], device='cuda:0')run.sh: line 160: 3089668 Killed                  python wenet/bin/train.py --gpu $gpu_id --config $train_config --data_type $data_type --symbol_table $dict --symbol_table_py $dict_py --train_data data/$train_set/data.list --cv_data data/dev/data.list ${checkpoint:+--checkpoint $checkpoint} --model_dir $dir --ddp.init_method $init_method --ddp.world_size $world_size --ddp.rank $rank --ddp.dist_backend $dist_backend --num_workers 1 $cmvn_opts --pin_memory

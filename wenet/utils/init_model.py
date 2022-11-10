@@ -36,14 +36,31 @@ def init_model(configs):
 
     input_dim = configs['input_dim']
     vocab_size = configs['output_dim']
+    vocab_size_py = configs['output_dim_py']
 
     encoder_type = configs.get('encoder', 'conformer')
     decoder_type = configs.get('decoder', 'bitransformer')
 
     if encoder_type == 'conformer':
-        encoder = ConformerEncoder(input_dim,
-                                   global_cmvn=global_cmvn,
+        encoder_before = ConformerEncoder(input_dim,
+                                          normalize_before=False,
+                                          global_cmvn=global_cmvn,
+                                          num_blocks=3,
                                    **configs['encoder_conf'])
+        
+        encoder_between = ConformerEncoder(256,
+                                          normalize_before=False,
+                                          global_cmvn=None,
+                                          num_blocks=0,
+                                   **configs['encoder_conf'])
+        
+        encoder = ConformerEncoder(256,
+                                   normalize_before=True,
+                                   global_cmvn=None,
+                                   num_blocks=9,
+                                   **configs['encoder_conf'])
+        
+        
     else:
         encoder = TransformerEncoder(input_dim,
                                      global_cmvn=global_cmvn,
@@ -57,6 +74,30 @@ def init_model(configs):
         decoder = BiTransformerDecoder(vocab_size, encoder.output_size(),
                                        **configs['decoder_conf'])
     ctc = CTC(vocab_size, encoder.output_size())
+    ctc_py = CTC(vocab_size_py,encoder.output_size())
+    ctc1 = CTC(vocab_size, encoder.output_size())
+    ## 要加CTC请在这里加
+
+
+    dict_path = '/home/wenzhengchang/wenet_wzc/examples/aishell/s0/data/dict/lang_char.txt'
+        # Load dict
+    char_dict = {}
+    with open(dict_path, 'r', encoding="utf-8") as fin:
+        for line in fin:
+            arr = line.strip().split()
+            assert len(arr) == 2
+            char_dict[int(arr[1])] = arr[0]
+       
+        
+    dict_pinyin_path = '/home/wenzhengchang/wenet_wzc/examples/aishell/s0/data/dict/lang_char_pinyin.txt'
+    # Load dict_pinyin
+    char_dict_pinyin = {}
+    with open(dict_pinyin_path, 'r', encoding="utf-8") as fin:
+        for line in fin:
+            arr = line.strip().split()
+            assert len(arr) == 2
+            char_dict_pinyin[int(arr[1])] = arr[0]
+
 
     # Init joint CTC/Attention or Transducer model
     if 'predictor' in configs:
@@ -80,6 +121,12 @@ def init_model(configs):
         configs['joint_conf']['pred_output_size'] = configs['predictor_conf'][
             'output_size']
         joint = TransducerJoint(vocab_size, **configs['joint_conf'])
+        
+        
+        
+        
+        
+        
         model = Transducer(vocab_size=vocab_size,
                            blank=0,
                            predictor=predictor,
@@ -90,8 +137,15 @@ def init_model(configs):
                            **configs['model_conf'])
     else:
         model = ASRModel(vocab_size=vocab_size,
+                         vocab_size_py=vocab_size_py,
+                         encoder_before=encoder_before,
+                         encoder_between=encoder_between,
+                         char_dict = char_dict,
+                         char_dict_pinyin = char_dict_pinyin,
                          encoder=encoder,
                          decoder=decoder,
                          ctc=ctc,
+                         ctc_py=ctc_py,
+                         ctc1=ctc1,
                          **configs['model_conf'])
     return model

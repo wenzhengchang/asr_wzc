@@ -93,6 +93,9 @@ def get_args():
     parser.add_argument('--symbol_table',
                         required=True,
                         help='model unit symbol table for training')
+    parser.add_argument('--symbol_table_py',
+                        required=True,
+                        help='model unit symbol table_py for training')
     parser.add_argument("--non_lang_syms",
                         help="non-linguistic symbol file. One symbol per line.")
     parser.add_argument('--prefetch',
@@ -144,6 +147,8 @@ def main():
                                 rank=args.rank)
 
     symbol_table = read_symbol_table(args.symbol_table)
+    
+    symbol_table_py = read_symbol_table(args.symbol_table_py)
 
     train_conf = configs['dataset_conf']
     cv_conf = copy.deepcopy(train_conf)
@@ -179,10 +184,13 @@ def main():
     else:
         input_dim = configs['dataset_conf']['mfcc_conf']['num_mel_bins']
     vocab_size = len(symbol_table)
+    
+    vocab_size_py = len(symbol_table_py)
 
     # Save configs to model_dir/train.yaml for inference and export
     configs['input_dim'] = input_dim
     configs['output_dim'] = vocab_size
+    configs['output_dim_py'] = vocab_size_py
     configs['cmvn_file'] = args.cmvn
     configs['is_json_cmvn'] = True
     if args.rank == 0:
