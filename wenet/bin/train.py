@@ -123,12 +123,13 @@ def get_args():
 
 
 def main():
+    # 读取配置参数
     args = get_args()
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(levelname)s %(message)s')
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
 
-    # Set random seed
+    # Set random seed 随机初始化种子
     torch.manual_seed(777)
     with open(args.config, 'r') as fin:
         configs = yaml.load(fin, Loader=yaml.FullLoader)
@@ -142,11 +143,16 @@ def main():
                                 init_method=args.init_method,
                                 world_size=args.world_size,
                                 rank=args.rank)
-
+    # 读取字典
     symbol_table = read_symbol_table(args.symbol_table)
+
+    # 自己创造一个口音字典
+    accent_table = {"Mandarin": 0, 'Zhongyuan': 1, 'Southwestern': 2, 'Ji-Lu': 3, 'Jiang-Huai': 4, 'Lan-Yin': 5,
+                    'Jiao-Liao': 6, 'Northeastern': 7, 'Beijing': 8}
 
     train_conf = configs['dataset_conf']
     cv_conf = copy.deepcopy(train_conf)
+
     cv_conf['speed_perturb'] = False
     cv_conf['spec_aug'] = False
     cv_conf['spec_sub'] = False
@@ -166,14 +172,14 @@ def main():
                          non_lang_syms,
                          partition=False)
 
-    # 训练dataloader
+    # 训练集dataloader
     train_data_loader = DataLoader(train_dataset,
                                    batch_size=None,
                                    pin_memory=args.pin_memory,
                                    num_workers=args.num_workers,
                                    prefetch_factor=args.prefetch)
 
-    # 验证dataloader
+    # 验证集dataloader
     cv_data_loader = DataLoader(cv_dataset,
                                 batch_size=None,
                                 pin_memory=args.pin_memory,
@@ -286,6 +292,7 @@ def main():
         configs['epoch'] = epoch
         lr = optimizer.param_groups[0]['lr']
         logging.info('Epoch {} TRAIN info lr {}'.format(epoch, lr))
+        # 使用执行器训练数据
         executor.train(model, optimizer, scheduler, train_data_loader, device,
                        writer, configs, scaler)
         total_loss, num_seen_utts = executor.cv(model, cv_data_loader, device,

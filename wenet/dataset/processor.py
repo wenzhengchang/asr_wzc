@@ -125,9 +125,11 @@ def parse_raw(data):
         assert 'key' in obj
         assert 'wav' in obj
         assert 'txt' in obj
+        assert 'acc' in obj
         key = obj['key']
         wav_file = obj['wav']
         txt = obj['txt']
+        acc = obj['acc']
         try:
             if 'start' in obj:
                 assert 'end' in obj
@@ -144,7 +146,8 @@ def parse_raw(data):
             example = dict(key=key,
                            txt=txt,
                            wav=waveform,
-                           sample_rate=sample_rate)
+                           sample_rate=sample_rate,
+                           acc=acc)
             yield example
         except Exception as ex:
             logging.warning('Failed to read {}'.format(wav_file))
@@ -351,10 +354,10 @@ def tokenize(data,
         Inplace operation
 
         Args:
-            data: Iterable[{key, wav, txt, sample_rate}]
+            data: Iterable[{key, wav, txt, sample_rate, acc}]
 
         Returns:
-            Iterable[{key, wav, txt, tokens, label, sample_rate}]
+            Iterable[{key, wav, txt, tokens, label, sample_rate, acc_label}]
     """
     if non_lang_syms is not None:
         non_lang_syms_pattern = re.compile(r"(\[[^\[\]]+\]|<[^<>]+>|{[^{}]+})")
@@ -368,6 +371,10 @@ def tokenize(data,
         sp.load(bpe_model)
     else:
         sp = None
+
+    # 自己创造一个口音字典
+    accent_table = {"Mandarin": 0, 'Zhongyuan': 1, 'Southwestern': 2, 'Ji-Lu': 3, 'Jiang-Huai': 4, 'Lan-Yin': 5,
+                    'Jiao-Liao': 6, 'Northeastern': 7, 'Beijing': 8}
 
     for sample in data:
         assert 'txt' in sample
@@ -400,8 +407,14 @@ def tokenize(data,
             elif '<unk>' in symbol_table:
                 label.append(symbol_table['<unk>'])
 
+        assert 'acc' in sample
+        acc = sample['acc'].strip()
+        acc_label = accent_table[acc]
+
         sample['tokens'] = tokens
         sample['label'] = label
+        sample['acc_label'] = acc_label
+
         yield sample
 
 
@@ -628,6 +641,9 @@ def padding(data):
         sorted_labels = [
             torch.tensor(sample[i]['label'], dtype=torch.int64) for i in order
         ]
+        sorted_acc_labels = [
+            torch.tensor(sample[i]['acc_label'], dtype=torch.int64) for i in order
+        ]
         label_lengths = torch.tensor([x.size(0) for x in sorted_labels],
                                      dtype=torch.int32)
 
@@ -639,4 +655,4 @@ def padding(data):
                                       padding_value=-1)
 
         yield (sorted_keys, padded_feats, padding_labels, feats_lengths,
-               label_lengths)
+               label_lengths,sorted_acc_labels)
