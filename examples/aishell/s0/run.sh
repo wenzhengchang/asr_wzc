@@ -5,7 +5,7 @@
 
 # Use this to control how many gpu you use, It's 1-gpu training if you specify
 # just 1gpu, otherwise it's is multiple gpu training based on DDP in pytorch
-export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
+export CUDA_VISIBLE_DEVICES="6"
 # The NCCL_SOCKET_IFNAME variable specifies which IP interface to use for nccl
 # communication. More details can be found in
 # https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html
@@ -105,8 +105,7 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
         --num_threads 16 data/$x/wav.scp data/$x/text \
         $(realpath data/$x/shards) data/$x/data.list
     else
-      tools/make_raw_list.py data/$x/wav.scp data/$x/text \
-        data/$x/data.list
+      tools/make_raw_list.py data/$x/wav.scp data/$x/text data/$x/utt2spk data/$x/data.list
     fi
   done
 fi
