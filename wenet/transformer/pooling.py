@@ -34,7 +34,7 @@ class Pooling(nn.Module):
         super().__init__()
         self.eps = 1e-12
 
-    def forward(self, x: torch.Tensor)->torch.Tensor:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Calculates mean and std for a batch (input tensor).
 
         Arguments
@@ -44,16 +44,20 @@ class Pooling(nn.Module):
         """
 
         # 计算mean和std
-        def _compute_statistics(x, dim=2, eps=self.eps):
-            mean = x.sum(dim)
-            std = torch.sqrt(
-                (x - mean.unsqueeze(dim)).pow(2).sum(dim).clamp(eps)
-            )
-            return mean, std
 
-        mean, std = _compute_statistics(x)
+        mean = x.sum(2)
+        std = torch.sqrt(
+            (x - mean.unsqueeze(2)).pow(2).sum(2).clamp(self.eps)
+        )
         # Append mean and std of the batch
         pooled_stats = torch.cat((mean, std), dim=1)
         pooled_stats = pooled_stats.unsqueeze(2)
-
+        # print("pooling出来的维度是：",pooled_stats.shape)
         return pooled_stats
+
+    # def _compute_statistics(x, dim=2, eps=1e-12):
+    #     mean = x.sum(dim)
+    #     std = torch.sqrt(
+    #         (x - mean.unsqueeze(dim)).pow(2).sum(dim).clamp(eps)
+    #     )
+    #     return mean, std

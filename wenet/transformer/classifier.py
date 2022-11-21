@@ -9,7 +9,7 @@ import torch
 from torch import nn
 
 
-# 分类器，把512的维度分到8个地方口音
+# 分类器，把512的维度分到9个地方口音
 class Classifier(torch.nn.Module):
     """This class implements the cosine similarity on the top of features.
 
@@ -53,6 +53,6 @@ class Classifier(torch.nn.Module):
             Torch tensor.
         """
 
-        x = self.linear(x)
-
-        return x.unsqueeze(1)
+        y = self.linear(x)
+        # print("classifier出来的维度",y.shape)
+        return y

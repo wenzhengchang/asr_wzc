@@ -71,7 +71,7 @@ class ASRModel(torch.nn.Module):
             normalize_length=length_normalized_loss,
         )
         self.pooling = Pooling()
-        self.classifier = Classifier(256, 8)
+        self.classifier = Classifier(512, 9)
         self.criterion_accent = SoftmaxLoss()
 
     def forward(
@@ -102,30 +102,23 @@ class ASRModel(torch.nn.Module):
         encoder_out_lens = encoder_mask.squeeze(1).sum(1)
 
         # 2a. Attention-decoder branch
-        if self.ctc_weight != 1.0:
-            loss_att, acc_att = self._calc_att_loss(encoder_out, encoder_mask,
+        loss_att, acc_att = self._calc_att_loss(encoder_out, encoder_mask,
                                                     text, text_lengths)
-        else:
-            loss_att = None
+       
 
         # 2b. CTC branch
-        if self.ctc_weight != 0.0:
-            loss_ctc = self.ctc(encoder_out, encoder_out_lens, text,
+        loss_ctc = self.ctc(encoder_out, encoder_out_lens, text,
                                 text_lengths)
-        else:
-            loss_ctc = None
+        
 
         # 2c. Accent-Recognition branch
-        pooled = self.pooling(encoder_out)
+        pooled = self.pooling(encoder_out.transpose(1, 2)).transpose(1, 2)
+        # print("pooled的维度是",pooled.shape)
         classified = self.classifier(pooled)
+        # print("accent target的维度",accent.shape)
         loss_accent = self.criterion_accent(classified, accent)
 
-        if loss_ctc is None:
-            loss_asr = loss_att
-        elif loss_att is None:
-            loss_asr = loss_ctc
-        else:
-            loss_asr = self.ctc_weight * loss_ctc + (1 - self.ctc_weight) * loss_att
+        loss_asr = self.ctc_weight * loss_ctc + (1 - self.ctc_weight) * loss_att
 
         loss = loss_asr * 0.9 + loss_accent * 0.1
 

@@ -282,7 +282,7 @@ def compute_fbank(data,
                           dither=dither,
                           energy_floor=0.0,
                           sample_frequency=sample_rate)
-        yield dict(key=sample['key'], label=sample['label'], feat=mat)
+        yield dict(key=sample['key'], label=sample['label'], feat=mat,acc_label=sample['acc_label'])
 
 
 def compute_mfcc(data,
@@ -319,7 +319,7 @@ def compute_mfcc(data,
                          high_freq=high_freq,
                          low_freq=low_freq,
                          sample_frequency=sample_rate)
-        yield dict(key=sample['key'], label=sample['label'], feat=mat)
+        yield dict(key=sample['key'], label=sample['label'], feat=mat,acc_label=sample['acc_label'])
 
 
 def __tokenize_by_bpe_model(sp, txt):
@@ -409,7 +409,8 @@ def tokenize(data,
 
         assert 'acc' in sample
         acc = sample['acc'].strip()
-        acc_label = accent_table[acc]
+        # acc_label = accent_table[acc]
+        acc_label = [accent_table[acc]]
 
         sample['tokens'] = tokens
         sample['label'] = label
@@ -644,6 +645,7 @@ def padding(data):
         sorted_acc_labels = [
             torch.tensor(sample[i]['acc_label'], dtype=torch.int64) for i in order
         ]
+        # print(sorted_labels[0].shape)
         label_lengths = torch.tensor([x.size(0) for x in sorted_labels],
                                      dtype=torch.int32)
 
@@ -653,6 +655,10 @@ def padding(data):
         padding_labels = pad_sequence(sorted_labels,
                                       batch_first=True,
                                       padding_value=-1)
+        
+        padding_acc_labels = pad_sequence(sorted_acc_labels,
+                                      batch_first=True,
+                                      padding_value=0)
 
         yield (sorted_keys, padded_feats, padding_labels, feats_lengths,
-               label_lengths,sorted_acc_labels)
+               label_lengths,padding_acc_labels)
