@@ -64,7 +64,8 @@ def get_args():
                             'attention', 'ctc_greedy_search',
                             'ctc_prefix_beam_search', 'attention_rescoring',
                             'rnnt_greedy_search', 'rnnt_beam_search',
-                            'rnnt_beam_attn_rescoring', 'ctc_beam_td_attn_rescoring'
+                            'rnnt_beam_attn_rescoring', 'ctc_beam_td_attn_rescoring',
+                            'test_acc_emb','test_acc_emb'
                         ],
                         default='attention',
                         help='decoding mode')
@@ -197,13 +198,42 @@ def main():
 
     model.eval()
     with torch.no_grad(), open(args.result_file, 'w') as fout:
+        
+        # 对于所有的样本，他的每一个维度的加总是多少
+        emb_every_sum = torch.zeros(9)
+        emb_every_sum = emb_every_sum.to(device)
+        # 对于9种口音来说，他的加总是多少
+        emb_sum = torch.zeros(9)
+        accent_table = {0: "Mandarin", 1: 'Zhongyuan', 2: 'Southwestern', 3: 'Ji-Lu', 4: 'Jiang-Huai',5: 'Lan-Yin',6: 'Jiao-Liao', 7: 'Northeastern', 8: 'Beijing'}
+        emb_sum = emb_sum.to(device)
         for batch_idx, batch in enumerate(test_data_loader):
-            keys, feats, target, feats_lengths, target_lengths = batch
+            keys, feats, target, feats_lengths, target_lengths,acc_target = batch
             feats = feats.to(device)
             target = target.to(device)
             feats_lengths = feats_lengths.to(device)
             target_lengths = target_lengths.to(device)
-            if args.mode == 'attention':
+            acc_target = acc_target.to(device)
+            
+            if args.mode == 'test_acc_emb':
+                acc_emb = model.recognize_accent(feats, feats_lengths, acc_target)
+                # 自己创造一个口音字典
+                    
+                emb_every_sum = emb_every_sum + acc_emb.squeeze(1)
+                print('emb_every_totol {}\n'.format(emb_every_sum))
+                print('emb_every_wav {}\n'.format(acc_emb.squeeze(1)))
+                
+                emb_sum[acc_target[0]] = emb_sum[acc_target[0]] + torch.sum(acc_emb, dim=1)
+                print('emb_sum {}: {}'.format(accent_table[acc_target[0].item()], emb_sum[acc_target[0]]))
+
+                # 打印emb_sum
+                for i, value in enumerate(emb_sum):
+                    fout.write('emb_sum {}: {}\n'.format(accent_table[i], value))
+
+                # 打印emb_every
+                for i, value in enumerate(emb_every_sum):
+                    fout.write('emb_every {}: {}\n'.format(accent_table[i], value))
+            
+            elif args.mode == 'attention':
                 hyps, _ = model.recognize(
                     feats,
                     feats_lengths,
@@ -298,14 +328,14 @@ def main():
                     simulate_streaming=args.simulate_streaming,
                     reverse_weight=args.reverse_weight)
                 hyps = [hyp]
-            for i, key in enumerate(keys):
-                content = []
-                for w in hyps[i]:
-                    if w == eos:
-                        break
-                    content.append(char_dict[w])
-                logging.info('{} {}'.format(key, args.connect_symbol.join(content)))
-                fout.write('{} {}\n'.format(key, args.connect_symbol.join(content)))
+            # for i, key in enumerate(keys):
+            #     content = []
+            #     for w in hyps[i]:
+            #         if w == eos:
+            #             break
+            #         content.append(char_dict[w])
+            #     logging.info('{} {}'.format(key, args.connect_symbol.join(content)))
+            #     fout.write('{} {}\n'.format(key, args.connect_symbol.join(content)))
 
 
 if __name__ == '__main__':

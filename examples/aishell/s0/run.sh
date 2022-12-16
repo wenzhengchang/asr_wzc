@@ -5,7 +5,10 @@
 
 # Use this to control how many gpu you use, It's 1-gpu training if you specify
 # just 1gpu, otherwise it's is multiple gpu training based on DDP in pytorch
-export CUDA_VISIBLE_DEVICES="2,3"
+
+# -----------GPU选择------------
+export CUDA_VISIBLE_DEVICES="7"
+
 # The NCCL_SOCKET_IFNAME variable specifies which IP interface to use for nccl
 # communication. More details can be found in
 # https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html
@@ -44,17 +47,26 @@ train_set=train
 # 4. conf/train_unified_transformer.yaml: Unified dynamic chunk transformer
 # 5. conf/train_u2++_conformer.yaml: U2++ conformer
 # 6. conf/train_u2++_transformer.yaml: U2++ transformer
-train_config=conf/train_conformer.yaml
+train_config=conf/train_conformer_v2.yaml
 cmvn=true
-dir=exp/conformer
-checkpoint=
+
+
+# --------------模型路径--------------------
+# dir=exp/conformer_card7_0.1_checkpoint
+dir=exp/conformer_card2_0.1_checkpoint_from_card7
+
+# -------------从哪个预训练模型加载参数--------------
+# checkpoint=exp/conformer_card4_0.00/3.pt
+# checkpoint=
+checkpoint=exp/conformer_card7_0.1_checkpoint/125.pt
 
 # use average_checkpoint will get better result
-average_checkpoint=true
-decode_checkpoint=$dir/final.pt
+average_checkpoint=false
+# -------------用哪个模型推理------------------
+decode_checkpoint=$dir/125.pt
 average_num=30
-decode_modes="ctc_greedy_search ctc_prefix_beam_search attention attention_rescoring"
-
+# decode_modes="ctc_greedy_search ctc_prefix_beam_search attention attention_rescoring"
+decode_modes="test_acc_emb"
 . tools/parse_options.sh || exit 1;
 
 if [ ${stage} -le -1 ] && [ ${stop_stage} -ge -1 ]; then
@@ -105,7 +117,7 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
         --num_threads 16 data/$x/wav.scp data/$x/text \
         $(realpath data/$x/shards) data/$x/data.list
     else
-      tools/make_raw_list.py data/$x/wav.scp data/$x/text data/$x/utt2spk data/$x/data.list
+      tools/make_raw_list.py data/$x/wav.scp data/$x/text data/$x/utt2subdialect data/$x/data.list
     fi
   done
 fi
@@ -147,7 +159,7 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
       --ddp.world_size $world_size \
       --ddp.rank $rank \
       --ddp.dist_backend $dist_backend \
-      --num_workers 1 \
+      --num_workers 6 \
       $cmvn_opts \
       --pin_memory
   } &
@@ -174,13 +186,13 @@ if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
   reverse_weight=0.0
   for mode in ${decode_modes}; do
   {
-    test_dir=$dir/test_${mode}
+    test_dir=$dir/test_acc_emb/test_${mode}
     mkdir -p $test_dir
     python wenet/bin/recognize.py --gpu 0 \
       --mode $mode \
       --config $dir/train.yaml \
       --data_type $data_type \
-      --test_data data/test/data.list \
+      --test_data data/train/data.list \
       --checkpoint $decode_checkpoint \
       --beam_size 10 \
       --batch_size 1 \
@@ -188,10 +200,10 @@ if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
       --dict $dict \
       --ctc_weight $ctc_weight \
       --reverse_weight $reverse_weight \
-      --result_file $test_dir/text \
+      --result_file $test_dir/text_acc_emb \
       ${decoding_chunk_size:+--decoding_chunk_size $decoding_chunk_size}
-    python tools/compute-wer.py --char=1 --v=1 \
-      data/test/text $test_dir/text > $test_dir/wer
+    # python tools/compute-wer.py --char=1 --v=1 \
+    #   data/test/text8 $test_dir/text8 > ./$test_dir/wer
   } &
   done
   wait

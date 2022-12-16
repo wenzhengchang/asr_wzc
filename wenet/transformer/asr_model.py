@@ -121,6 +121,7 @@ class ASRModel(torch.nn.Module):
         loss_asr = self.ctc_weight * loss_ctc + (1 - self.ctc_weight) * loss_att
 
         loss = loss_asr * 0.9 + loss_accent * 0.1
+        # loss = loss_asr
 
         return {"loss": loss, "loss_asr": loss_asr, "loss_att": loss_att, "loss_ctc": loss_ctc, "loss_acc": loss_accent}
 
@@ -183,6 +184,23 @@ class ASRModel(torch.nn.Module):
                 num_decoding_left_chunks=num_decoding_left_chunks
             )  # (B, maxlen, encoder_dim)
         return encoder_out, encoder_mask
+
+
+    # 没有识别口音，只是返回emb
+    def recognize_accent(self, speech: torch.Tensor, speech_lengths: torch.Tensor,
+                         acc_target: torch.Tensor) -> torch.Tensor:
+
+        encoder_out, encoder_mask = self.encoder(speech, speech_lengths)
+        encoder_out_lens = encoder_mask.squeeze(1).sum(1)
+
+        pooled = self.pooling(encoder_out.transpose(1, 2)).transpose(1, 2)
+
+        classified = self.classifier(pooled)
+
+        classified = classified.squeeze(1).float()
+        # (B,9)
+        return classified    
+
 
     def recognize(
             self,

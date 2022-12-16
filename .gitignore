@@ -35,6 +35,7 @@ exp
 data
 raw_wav
 tensorboard
+logs
 **/*build*
 
 # protoc output files
