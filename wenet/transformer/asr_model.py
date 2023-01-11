@@ -39,6 +39,7 @@ class ASRModel(torch.nn.Module):
         encoder: TransformerEncoder,
         decoder: TransformerDecoder,
         ctc: CTC,
+        ctc6: CTC,
         ctc_weight: float = 0.5,
         ignore_id: int = IGNORE_ID,
         reverse_weight: float = 0.0,
@@ -59,6 +60,7 @@ class ASRModel(torch.nn.Module):
         self.encoder = encoder
         self.decoder = decoder
         self.ctc = ctc
+        self.ctc6 = ctc6
         self.criterion_att = LabelSmoothingLoss(
             size=vocab_size,
             padding_idx=ignore_id,
@@ -87,31 +89,21 @@ class ASRModel(torch.nn.Module):
                 text_lengths.shape[0]), (speech.shape, speech_lengths.shape,
                                          text.shape, text_lengths.shape)
         # 1. Encoder
-        encoder_out, encoder_mask = self.encoder(speech, speech_lengths)
+        encoder_out, encoder6_out, encoder_mask = self.encoder(speech, speech_lengths)
         encoder_out_lens = encoder_mask.squeeze(1).sum(1)
 
-        # 2a. Attention-decoder branch
-        if self.ctc_weight != 1.0:
-            loss_att, acc_att = self._calc_att_loss(encoder_out, encoder_mask,
-                                                    text, text_lengths)
-        else:
-            loss_att = None
+        # # 2a. Attention-decoder branch
+        # if self.ctc_weight != 1.0:
+        #     loss_att, acc_att = self._calc_att_loss(encoder_out, encoder_mask,
+        #                                             text, text_lengths)
+        # else:
+        #     loss_att = None
 
         # 2b. CTC branch
-        if self.ctc_weight != 0.0:
-            loss_ctc = self.ctc(encoder_out, encoder_out_lens, text,
-                                text_lengths)
-        else:
-            loss_ctc = None
-
-        if loss_ctc is None:
-            loss = loss_att
-        elif loss_att is None:
-            loss = loss_ctc
-        else:
-            loss = self.ctc_weight * loss_ctc + (1 -
-                                                 self.ctc_weight) * loss_att
-        return {"loss": loss, "loss_att": loss_att, "loss_ctc": loss_ctc}
+        loss_ctc = self.ctc(encoder_out, encoder_out_lens, text,text_lengths)
+        loss_ctc6 = self.ctc6(encoder6_out, encoder_out_lens, text, text_lengths)
+        loss = loss_ctc
+        return {"loss": loss, "loss_ctc": loss_ctc}
 
     def _calc_att_loss(
         self,

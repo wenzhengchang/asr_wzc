@@ -129,6 +129,9 @@ class BaseEncoder(torch.nn.Module):
 
         self.normalize_before = normalize_before
         self.after_norm = torch.nn.LayerNorm(output_size, eps=1e-5)
+        self.after_norm3 = torch.nn.LayerNorm(output_size, eps=1e-5)
+        self.after_norm6 = torch.nn.LayerNorm(output_size, eps=1e-5)
+        self.after_norm9 = torch.nn.LayerNorm(output_size, eps=1e-5)
         self.static_chunk_size = static_chunk_size
         self.use_dynamic_chunk = use_dynamic_chunk
         self.use_dynamic_left_chunk = use_dynamic_left_chunk
@@ -142,7 +145,7 @@ class BaseEncoder(torch.nn.Module):
         xs_lens: torch.Tensor,
         decoding_chunk_size: int = 0,
         num_decoding_left_chunks: int = -1,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         """Embed positions in tensor.
 
         Args:
@@ -180,19 +183,23 @@ class BaseEncoder(torch.nn.Module):
                                               decoding_chunk_size,
                                               self.static_chunk_size,
                                               num_decoding_left_chunks)
-
+        
         # 对于每一层前向传播，然后更新动态chunk的chunk_mask
+        xs6 = xs
+        count = 0
         for layer in self.encoders:
             xs, chunk_masks, _, _ = layer(xs, chunk_masks, pos_emb, mask_pad)
-
-        # 最后做一个layer normalization
+            if count == 5:
+                xs6 = xs
+            count = count + 1
         if self.normalize_before:
             xs = self.after_norm(xs)
+        xs6 = self.after_norm6(xs6)
         # Here we assume the mask is not changed in encoder layers, so just
         # return the masks before encoder layers, and the masks will be used
         # for cross attention with decoder later
         # 这个masks在encoder layer之后不会改变，所以直接传出去 留给后面的cross attention
-        return xs, masks
+        return xs, xs6, masks
 
     def forward_chunk(
         self,
